@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private PlayerType playerType;
+
     private float speed = 1;
     private float switchSpeed = 1;
     private bool isMoving;
@@ -14,14 +16,32 @@ public class PlayerController : MonoBehaviour
 
         if (!isMoving)
         {
-            if (Input.GetKey(KeyCode.A))
+            if (GetKey(MoveKey.Left))
             {
                 StartCoroutine(MovePlayer(Orientation.Left));
             }
-            else if (Input.GetKey(KeyCode.D))
+            else if (GetKey(MoveKey.Right))
             {
                 StartCoroutine(MovePlayer(Orientation.Right));
             }
+        }
+    }
+
+    private bool GetKey(MoveKey key)
+    {
+        if(playerType == PlayerType.PlayerOne)
+        {
+            if (key == MoveKey.Left) 
+                return Input.GetKey(KeyCode.A);
+            else
+                return Input.GetKey(KeyCode.D);
+        }
+        else
+        {
+            if (key == MoveKey.Left)
+                return Input.GetKey(KeyCode.J);
+            else
+                return Input.GetKey(KeyCode.L);
         }
     }
 
