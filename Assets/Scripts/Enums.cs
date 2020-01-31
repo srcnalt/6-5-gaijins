@@ -1,4 +1,4 @@
-﻿public enum ObjectOrientation
+﻿public enum Orientation
 {
     Left,
     Center,

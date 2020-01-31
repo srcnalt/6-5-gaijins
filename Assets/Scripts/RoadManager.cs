@@ -23,7 +23,7 @@ public class RoadManager : MonoBehaviour
             instance.transform.position += PieceLength * i;
         }
 
-        for (int i = 0; i < RoadCount * 3 - 1; i++)
+        for (int i = 1; i < RoadCount * 3 - 1; i++)
         {
             int index = Random.Range(0, breakableObjects.Length);
             GameObject instance = Instantiate(breakableObjects[index], roadContainer);
