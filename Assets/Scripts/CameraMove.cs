@@ -43,7 +43,7 @@ public class CameraMove : MonoBehaviour
     	float progress = 0;
     	while(progress < 1) {
     		progress += Time.deltaTime;
-    		Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, endPosition.position, progress);
+    		Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, endPosition.position, Time.deltaTime);
     		canvasGroup.alpha = progress;
     		yield return null;
     	}
