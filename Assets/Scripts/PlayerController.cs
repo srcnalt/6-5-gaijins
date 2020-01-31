@@ -4,15 +4,17 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerType playerType;
+    [SerializeField] private Score score;
 
-    private float speed = 1;
-    private float switchSpeed = 1;
+    private float speed = 5;
+    private float switchSpeed = 3;
     private bool isMoving;
+    private bool isReturning;
     private Orientation orientation = Orientation.Center;
 
-    private void FixedUpdate()
+    private void Update()
     {
-        transform.position += new Vector3(0, 0, Time.deltaTime * speed);
+        transform.position += new Vector3(0, 0, Time.deltaTime * speed * transform.forward.z);
 
         if (!isMoving)
         {
@@ -76,7 +78,7 @@ public class PlayerController : MonoBehaviour
             while (progress < 0.8f)
             {
                 progress += Time.deltaTime * switchSpeed;
-                transform.localPosition += new Vector3(moveDir * Time.deltaTime * switchSpeed, 0, 0);
+                transform.localPosition += new Vector3(moveDir * Time.deltaTime * switchSpeed * transform.right.x, 0, 0);
                 yield return null;
             }
 
@@ -84,11 +86,57 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    bool sentinel = false;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Breakable"))
+        if (!sentinel)
         {
-            other.transform.parent.GetComponent<BreakableObject>().SwitchState();
+            sentinel = true;
+            if (other.CompareTag("Breakable"))
+            {
+                BreakableObject breakable = other.transform.parent.GetComponent<BreakableObject>();
+
+                if(!breakable.isBroken)
+                {
+                    if (isReturning)
+                    {
+                        score.Destroyed(-1);
+                    }
+                    else
+                    {
+                        score.Destroyed(1);
+                    }
+                }
+                else if (breakable.isBroken && isReturning)
+                {
+                    score.Repaired(1);
+                }
+
+                breakable.SwitchState();
+            }
+            else if (other.CompareTag("EndWall"))
+            {
+                other.gameObject.SetActive(false);
+
+                isReturning = true;
+                transform.Rotate(new Vector3(0, 180, 0));
+
+                if (orientation == Orientation.Left) orientation = Orientation.Right;
+                else if (orientation == Orientation.Right) orientation = Orientation.Left;
+
+                Vector3 position = transform.position;
+                if (playerType == PlayerType.PlayerOne) position.x = 5;
+                else position.x = 0;
+                transform.position = position; 
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (sentinel)
+        {
+            sentinel = false;
         }
     }
 }

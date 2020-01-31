@@ -6,7 +6,7 @@ public class BreakableObject : MonoBehaviour
     [SerializeField] private GameObject broken;
     [SerializeField] private Orientation orientation;
 
-    private bool isBroken;
+    [HideInInspector] public bool isBroken;
 
     private void Start()
     {
@@ -25,7 +25,7 @@ public class BreakableObject : MonoBehaviour
                 break;
             case Orientation.Center:
                 int offsetDirection = Random.Range(-1, 2);
-                transform.position += new Vector3(0.2f * offsetDirection, 0, 0);
+                transform.position += new Vector3(0.1f * offsetDirection, 0, 0);
                 break;
         }
     }
@@ -34,5 +34,6 @@ public class BreakableObject : MonoBehaviour
     {
         broken.SetActive(!isBroken);
         main.SetActive(isBroken);
+        isBroken = !isBroken;
     }
 }
