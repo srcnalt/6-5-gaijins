@@ -898,7 +898,17 @@ PrefabInstance:
     - target: {fileID: 8865203002921223613, guid: 465178581c5fe804bba13a49c38331bb,
         type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865203002921223613, guid: 465178581c5fe804bba13a49c38331bb,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865203002921223613, guid: 465178581c5fe804bba13a49c38331bb,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 465178581c5fe804bba13a49c38331bb, type: 3}
@@ -1499,6 +1509,8 @@ MonoBehaviour:
   laneTwo: {fileID: 1368614576}
   endWallPrefab: {fileID: 5689235115285504494, guid: e80b6f6bbf08bfa48af0e0e2ee37b0f7,
     type: 3}
+  startWallPrefab: {fileID: 5689235115285504494, guid: 5f6edc89c8ba28f46a47efe838dd97cd,
+    type: 3}
   breakableObjects:
   - {fileID: 2165574695529724721, guid: 61ea4a83844c1744ebb1b31b810471ec, type: 3}
   - {fileID: 2165574695529724721, guid: d28b6d0d0b4a6bc459ec570d3f44a4c0, type: 3}
@@ -1585,7 +1597,17 @@ PrefabInstance:
     - target: {fileID: 8865203002921223613, guid: 465178581c5fe804bba13a49c38331bb,
         type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865203002921223613, guid: 465178581c5fe804bba13a49c38331bb,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865203002921223613, guid: 465178581c5fe804bba13a49c38331bb,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 465178581c5fe804bba13a49c38331bb, type: 3}

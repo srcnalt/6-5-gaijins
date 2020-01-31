@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerType playerType;
     [SerializeField] private Score score;
 
+    private bool gameOver;
     private float speed = 5;
     private float switchSpeed = 3;
     private bool isMoving;
@@ -14,6 +15,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (gameOver) return;
+
         transform.position += new Vector3(0, 0, Time.deltaTime * speed * transform.forward.z);
 
         if (!isMoving)
@@ -128,6 +131,11 @@ public class PlayerController : MonoBehaviour
                 if (playerType == PlayerType.PlayerOne) position.x = 5;
                 else position.x = 0;
                 transform.position = position; 
+            }
+            else if (other.CompareTag("StartWall"))
+            {
+                Debug.Log("Game Over");
+                gameOver = true;
             }
         }
     }

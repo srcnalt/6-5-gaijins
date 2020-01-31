@@ -10,6 +10,7 @@ public class RoadManager : MonoBehaviour
     [SerializeField] private Transform laneOne;
     [SerializeField] private Transform laneTwo;
     [SerializeField] private GameObject endWallPrefab;
+    [SerializeField] private GameObject startWallPrefab;
     [SerializeField] private GameObject[] breakableObjects;
 
     private void Start()
@@ -20,6 +21,9 @@ public class RoadManager : MonoBehaviour
 
     private void CreateLevel(Transform lane)
     {
+        GameObject startWall = Instantiate(startWallPrefab, lane);
+        startWall.transform.position += PieceLength * -0.5f;
+
         for (int i = 0; i < RoadCount; i++)
         {
             GameObject instance = Instantiate(roadPiecePrefab, lane);
