@@ -27,13 +27,12 @@ public class PlayerController : MonoBehaviour
     private float leftWall = -1;
     private float rightWall = 1;
 
-    private Animator animator;
+    private int trapsLeft = 5;
 
     private void Start()
     {
         controlKeys = MapControls(playerType);
         Prepare();
-        animator = ram.GetComponent<Animator>();
     }
 
     private void Prepare()
@@ -50,33 +49,28 @@ public class PlayerController : MonoBehaviour
             case GameMode.Instructions:
                 break;
             case GameMode.Break:
-                animator.SetBool("Run", true);
                 MovePlayer();
                 DropTrap();
                 break;
             case GameMode.CutScene:
-                animator.SetBool("Run", false);
                 break;
             case GameMode.Repair:
-                animator.SetBool("Run", true);
                 MovePlayer();
                 break;
             case GameMode.GameOver:
-                animator.SetBool("Run", false);
                 break;
         }
     }
 
-    private int count;
     private bool trapCooldown;
     private void DropTrap()
     {
-        if (GetKey(MoveKey.Trap) && !trapCooldown && count < 5)
+        if (GetKey(MoveKey.Trap) && !trapCooldown && trapsLeft > 0)
         {
-            count++;
             trapCooldown = true;
             GameObject instance = Instantiate(traps[UnityEngine.Random.Range(0, traps.Length)]);
             instance.transform.position = transform.position;
+            trapsLeft -= 1;
 
             Invoke("TrapReady", 0.5f);
         }
@@ -89,8 +83,6 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-
-
         if (GetKey(MoveKey.Left))
         {
             xSpeed -= acceleration;
@@ -218,5 +210,5 @@ public class PlayerController : MonoBehaviour
     {
         return Input.GetKey((KeyCode)controlKeys[key]);
     }
-    
+
 }

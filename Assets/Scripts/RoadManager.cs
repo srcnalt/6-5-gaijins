@@ -2,7 +2,7 @@
 
 public class RoadManager : MonoBehaviour
 {
-    private const int RoadCount = 18;
+    private const int RoadCount = 20;
     private readonly Vector3 PieceLength = new Vector3(0, 0, 6);
     private readonly Vector3 PieceForwardOffset = new Vector3(0, 0, 2);
 
@@ -17,13 +17,22 @@ public class RoadManager : MonoBehaviour
     {
         CreateLevel(laneOne);
         CreateLevel(laneTwo);
+
+        GameObject cutSceneRoom = Instantiate(endWallPrefab, transform);
+        cutSceneRoom.transform.position += PieceLength * RoadCount;
     }
 
     private void CreateLevel(Transform lane)
     {
         GameObject startWall = Instantiate(startWallPrefab, lane);
         startWall.transform.position += PieceLength * -0.5f;
-        
+
+        for (int i = 0; i < RoadCount; i++)
+        {
+            GameObject instance = Instantiate(roadPiecePrefab, lane);
+            instance.transform.position += PieceLength * i;
+        }
+
         for (int i = 3; i < RoadCount * 3 - 3; i++)
         {
             int index = Random.Range(0, breakableObjects.Length);
