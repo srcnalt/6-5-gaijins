@@ -9,7 +9,7 @@ public class CameraMove : MonoBehaviour
 	[SerializeField] private Transform endPosition;
 	[SerializeField] private Canvas blackCanvas;
 	private CanvasGroup canvasGroup;
-	private int state; // 0 , 1, and 2
+	public int state; // 0 , 1, and 2
 
     void Start()
     {
@@ -27,17 +27,16 @@ public class CameraMove : MonoBehaviour
         if(Input.GetKey(KeyCode.Space) && state == 0) {
         	StartCoroutine(MoveToFocus());
         }
-        else if(Input.GetKey(KeyCode.Space) && state == 1) {
-        	StartCoroutine(MoveToEnd());
-        }
     }
+	public void StartFadeTo(int sceneNumber) {
+		StartCoroutine(MoveToEnd(sceneNumber));
+	}
 
     private IEnumerator MoveToFocus() {
     	float progress = 0;
     	while(progress < 1) {
     		progress += Time.deltaTime;
     		Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, focusPosition.position, Time.deltaTime);
-    		print(progress);
     		yield return null;
     	}
     	if(progress >=1) {
@@ -46,7 +45,7 @@ public class CameraMove : MonoBehaviour
     	//
     }
 
-    private IEnumerator MoveToEnd() {
+    public IEnumerator MoveToEnd(int sceneNumber) {
     	float progress = 0;
     	while(progress < 1) {
     		progress += Time.deltaTime;
@@ -56,6 +55,9 @@ public class CameraMove : MonoBehaviour
     	}
     	if(progress >= 1) {
     		state = 2;
+			if(sceneNumber >= 0) {
+				Application.LoadLevel(sceneNumber);
+			}
     	}
     }
 }
