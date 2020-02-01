@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
 
-        if(transform.position.z < 0) {  // bit of tacked-on code which 
+        if(transform.position.z < 0) {  // bit of tacked-on code which loads main menu when player exits scene
             Application.LoadLevel(1);
         }
     }
