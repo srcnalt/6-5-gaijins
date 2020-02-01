@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FogScript : MonoBehaviour
+public class ShaderScript : MonoBehaviour
 {
     public Material mat;
 

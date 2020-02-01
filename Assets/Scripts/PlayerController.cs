@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using EZCameraShake;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerType playerType;
     [SerializeField] private Score score;
     [SerializeField] private Transform ram;
+    [SerializeField] private Camera camera;
 
     [SerializeField] private GameObject[] traps;
 
@@ -16,9 +18,10 @@ public class PlayerController : MonoBehaviour
     public static GameMode mode = GameMode.Instructions;
 
     private float speed = 5;
-    private float acceleration = 0.2f;
+    private float acceleration = 0.12f;
     private float xSpeed = 0;
     private float initialX = 2.5f;
+    private float baseRotation = 20;
 
     private float leftWall = -1;
     private float rightWall = 1;
@@ -79,17 +82,14 @@ public class PlayerController : MonoBehaviour
         if (GetKey(MoveKey.Left))
         {
             xSpeed -= acceleration;
-            ram.rotation = Quaternion.Lerp(ram.rotation, Quaternion.Euler(0, -45, 0) * transform.rotation, Time.deltaTime * 10);
         }
         else if (GetKey(MoveKey.Right))
         {
             xSpeed += acceleration;
-            ram.rotation = Quaternion.Lerp(ram.rotation, Quaternion.Euler(0, 45, 0) * transform.rotation, Time.deltaTime * 10);
         }
         else
         {
             xSpeed -= xSpeed / 10;
-            ram.rotation = Quaternion.Lerp(ram.rotation, Quaternion.Euler(0, 0, 0) * transform.rotation, Time.deltaTime * 20);
         }
        
         xSpeed = Mathf.Clamp(xSpeed, -2, 2);
@@ -97,11 +97,12 @@ public class PlayerController : MonoBehaviour
         float nextX = transform.localPosition.x + moveX;
         if ((nextX < leftWall) || (nextX > rightWall))
         {
-            xSpeed = -xSpeed / 3;
+            xSpeed = -xSpeed / 2;
             xSpeed = Mathf.Abs(xSpeed) < 0.2 ? 0 : xSpeed;
             moveX = Time.deltaTime * xSpeed;
         }
 
+        ram.rotation = Quaternion.Lerp(ram.rotation, Quaternion.Euler(0, xSpeed * baseRotation, 0) * transform.rotation, Time.deltaTime * 20);
         transform.position += new Vector3(0, 0, Time.deltaTime * speed);
         transform.localPosition += new Vector3(moveX, 0, 0);
     }
@@ -110,6 +111,7 @@ public class PlayerController : MonoBehaviour
     {
         speed = -speed;
         acceleration = -acceleration;
+        baseRotation = -baseRotation;
         Vector3 nextPos = transform.position;
         nextPos.x = nextPos.x < 0 ? initialX : -initialX;
         transform.position = nextPos;
@@ -129,6 +131,9 @@ public class PlayerController : MonoBehaviour
 
                 if(!breakable.isBroken)
                 {
+                    Debug.Log(playerType);
+                    CameraShaker.Instance.camera = camera;
+                    CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, .3f);
                     if (isReturning)
                     {
                         score.AddScore(-1);
