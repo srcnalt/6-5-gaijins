@@ -63,8 +63,8 @@ public class CutScene : MonoBehaviour
 
         winLose.SetActive(true);
 
-        int p1 = playerOneScore.repairedVal + playerOneScore.destroyedVal;
-        int p2 = playerTwoScore.repairedVal + playerTwoScore.destroyedVal;
+        int p1 = playerOneScore.scoreVal;
+        int p2 = playerTwoScore.scoreVal;
 
         if (p1 > p2)
         {

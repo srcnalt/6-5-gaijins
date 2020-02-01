@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using EZCameraShake;
 
@@ -6,11 +7,14 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerType playerType;
     [SerializeField] private Score score;
+    [SerializeField] private Transform ram;
+
+    [SerializeField] private GameObject[] traps;
 
     private Hashtable controlKeys = new Hashtable();
 
     private bool isReturning;
-    public static GameMode mode = GameMode.Break;
+    public static GameMode mode = GameMode.Instructions;
 
     private float speed = 5;
     private float acceleration = 0.2f;
@@ -37,8 +41,11 @@ public class PlayerController : MonoBehaviour
     {
         switch (mode)
         {
+            case GameMode.Instructions:
+                break;
             case GameMode.Break:
                 MovePlayer();
+                DropTrap();
                 break;
             case GameMode.CutScene:
                 break;
@@ -50,14 +57,41 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private bool trapCooldown;
+    private void DropTrap()
+    {
+        if (GetKey(MoveKey.Trap) && !trapCooldown)
+        {
+            trapCooldown = true;
+            GameObject instance = Instantiate(traps[UnityEngine.Random.Range(0, traps.Length)]);
+            instance.transform.position = transform.position;
+
+            Invoke("TrapReady", 0.5f);
+        }
+    }
+
+    private void TrapReady()
+    {
+        trapCooldown = false;
+    }
+
     private void MovePlayer()
     {
         if (GetKey(MoveKey.Left))
+        {
             xSpeed -= acceleration;
+            ram.rotation = Quaternion.Lerp(ram.rotation, Quaternion.Euler(0, -45, 0) * transform.rotation, Time.deltaTime * 10);
+        }
         else if (GetKey(MoveKey.Right))
+        {
             xSpeed += acceleration;
+            ram.rotation = Quaternion.Lerp(ram.rotation, Quaternion.Euler(0, 45, 0) * transform.rotation, Time.deltaTime * 10);
+        }
         else
+        {
             xSpeed -= xSpeed / 10;
+            ram.rotation = Quaternion.Lerp(ram.rotation, Quaternion.Euler(0, 0, 0) * transform.rotation, Time.deltaTime * 20);
+        }
        
         xSpeed = Mathf.Clamp(xSpeed, -2, 2);
         float moveX = Time.deltaTime * xSpeed;
@@ -99,16 +133,16 @@ public class PlayerController : MonoBehaviour
                     CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, .3f);
                     if (isReturning)
                     {
-                        score.Destroyed(-1);
+                        score.AddScore(-1);
                     }
                     else
                     {
-                        score.Destroyed(1);
+                        score.AddScore(1);
                     }
                 }
                 else if (breakable.isBroken && isReturning)
                 {
-                    score.Repaired(1);
+                    score.AddScore(1);
                 }
 
                 breakable.SwitchState();
@@ -131,6 +165,10 @@ public class PlayerController : MonoBehaviour
                 mode = GameMode.GameOver;
                 //gameOver = true;
             }
+            else if (other.CompareTag("Trap"))
+            {
+                score.AddScore(-1);
+            }
         }
     }
 
@@ -147,13 +185,15 @@ public class PlayerController : MonoBehaviour
         Hashtable controlKeys = new Hashtable();
         if (type == PlayerType.PlayerOne)
         {
-            controlKeys[MoveKey.Left] = KeyCode.A;
+            controlKeys[MoveKey.Left]  = KeyCode.A;
             controlKeys[MoveKey.Right] = KeyCode.D;
+            controlKeys[MoveKey.Trap]  = KeyCode.S;
         }
         else
         {
-            controlKeys[MoveKey.Left] = KeyCode.J;
+            controlKeys[MoveKey.Left]  = KeyCode.J;
             controlKeys[MoveKey.Right] = KeyCode.L;
+            controlKeys[MoveKey.Trap]  = KeyCode.K;
         }
         return controlKeys;
     }
