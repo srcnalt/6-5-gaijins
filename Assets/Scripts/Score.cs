@@ -6,8 +6,8 @@ public class Score : MonoBehaviour
     [SerializeField] private Text destroyed;
     [SerializeField] private Text repaired;
 
-    private int destroyedVal = 0;
-    private int repairedVal = 0;
+    public int destroyedVal = 0;
+    public int repairedVal = 0;
 
     public void Destroyed(int value)
     {

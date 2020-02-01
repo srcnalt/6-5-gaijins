@@ -23,5 +23,6 @@ public enum GameMode
     CutScene,
     Repair,
     GameOver,
-    None
+    None,
+    Stop
 }

@@ -83,17 +83,6 @@ public class PlayerController : MonoBehaviour
         Prepare();
     }
 
-    private void GameOver()
-    { 
-        mode = GameMode.GameOver;
-        CalculateScore();
-    }
-
-    private int CalculateScore()
-    {
-        return 0;
-    }
-
     bool sentinel = false;
     private void OnTriggerEnter(Collider other)
     {
@@ -137,6 +126,7 @@ public class PlayerController : MonoBehaviour
             else if (other.CompareTag("EndWall"))
             {
                 Debug.Log("Game Over");
+                mode = GameMode.GameOver;
                 //gameOver = true;
             }
         }
