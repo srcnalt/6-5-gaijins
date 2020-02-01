@@ -37,7 +37,7 @@ public class CutScene : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     PlayerController.mode = GameMode.Break;
-                    SceneManager.LoadScene(0);
+                    SceneManager.LoadScene(1);
                 }
                 break;
         }

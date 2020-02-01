@@ -5,6 +5,7 @@ using EZCameraShake;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject AudioManager;
     [SerializeField] private PlayerType playerType;
     [SerializeField] private Score score;
     [SerializeField] private Transform ram;
@@ -25,6 +26,8 @@ public class PlayerController : MonoBehaviour
 
     private float leftWall = -1;
     private float rightWall = 1;
+
+    private int trapsLeft = 5;
 
     private void Start()
     {
@@ -62,11 +65,13 @@ public class PlayerController : MonoBehaviour
     private bool trapCooldown;
     private void DropTrap()
     {
-        if (GetKey(MoveKey.Trap) && !trapCooldown)
+        if (GetKey(MoveKey.Trap) && !trapCooldown && trapsLeft > 0)
         {
             trapCooldown = true;
             GameObject instance = Instantiate(traps[UnityEngine.Random.Range(0, traps.Length)]);
             instance.transform.position = transform.position;
+
+            trapsLeft -= 1;
 
             Invoke("TrapReady", 0.5f);
         }
@@ -131,9 +136,9 @@ public class PlayerController : MonoBehaviour
 
                 if(!breakable.isBroken)
                 {
-                    Debug.Log(playerType);
                     CameraShaker.Instance.camera = camera;
                     CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, .3f);
+                    AudioManager.GetComponent<AudioSource>().PlayOneShot(AudioManager.GetComponent<AudioLoader>().GetBreakingSound(),0.5f); // plays random breaking sound
                     if (isReturning)
                     {
                         score.AddScore(-1);
