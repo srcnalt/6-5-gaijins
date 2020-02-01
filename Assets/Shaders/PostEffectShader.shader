@@ -46,6 +46,19 @@
                 float depth = tex2D(_CameraDepthTexture, IN.uv).r;
                 depth = 1 - clamp(depth * 10, 0, 1);
 
+                float2 texCoord = IN.uv;
+                float zOverW = depth;
+                float4 currentPos = float4(texCoord.x * 2 - 1, (1 - texCoord.y) * 2 - 1, zOverW, 1); 
+                float2 velocity = -currentPos / 300.f;
+
+                texCoord += velocity;
+                for(int i = 1; i < 10; ++i, texCoord += velocity) {
+                    float4 currentColor = tex2D(_MainTex, texCoord);  
+                    color += currentColor;
+                } 
+                color = color / 10; 
+
+
                 color = color + pow(depth, 10) * float4(0.9,0.9,0.9,1);
                 return color;
             }
