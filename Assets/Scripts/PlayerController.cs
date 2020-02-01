@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerType playerType;
     [SerializeField] private Score score;
     [SerializeField] private Transform ram;
+    [SerializeField] private Camera camera;
 
     [SerializeField] private GameObject[] traps;
 
@@ -130,6 +131,8 @@ public class PlayerController : MonoBehaviour
 
                 if(!breakable.isBroken)
                 {
+                    Debug.Log(playerType);
+                    CameraShaker.Instance.camera = camera;
                     CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, .3f);
                     if (isReturning)
                     {

@@ -1666,6 +1666,7 @@ MonoBehaviour:
   DefaultRotInfluence: {x: 1, y: 1, z: 1}
   RestPositionOffset: {x: 0, y: 3, z: -8}
   RestRotationOffset: {x: 5, y: 0, z: 0}
+  camera: {fileID: 1073636643}
 --- !u!114 &1073636642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1679,6 +1680,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mat: {fileID: 2100000, guid: f0c0fd75016114f1fad3ee3b31c3ae96, type: 2}
+--- !u!20 &1073636643 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8865203001815794355, guid: 465178581c5fe804bba13a49c38331bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1172573186}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1081794065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,6 +1963,11 @@ PrefabInstance:
         type: 3}
       propertyPath: far clip plane
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865203001815794366, guid: 465178581c5fe804bba13a49c38331bb,
+        type: 3}
+      propertyPath: m_Name
+      value: Camera-1
       objectReference: {fileID: 0}
     - target: {fileID: 8865203002921223600, guid: 465178581c5fe804bba13a49c38331bb,
         type: 3}
@@ -3481,6 +3493,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944447453}
   m_CullTransparentMesh: 0
+--- !u!1 &1960751692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8865203001815794366, guid: 465178581c5fe804bba13a49c38331bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 8865203003787077321}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1960751694 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8865203001815794355, guid: 465178581c5fe804bba13a49c38331bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 8865203003787077321}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1960751695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960751692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultPosInfluence: {x: 0.15, y: 0.15, z: 0.15}
+  DefaultRotInfluence: {x: 1, y: 1, z: 1}
+  RestPositionOffset: {x: 0, y: 3, z: -8}
+  RestRotationOffset: {x: 5, y: 0, z: 0}
+  camera: {fileID: 1960751694}
 --- !u!1 &1988204852
 GameObject:
   m_ObjectHideFlags: 0
@@ -3835,6 +3876,11 @@ PrefabInstance:
         type: 3}
       propertyPath: far clip plane
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865203001815794366, guid: 465178581c5fe804bba13a49c38331bb,
+        type: 3}
+      propertyPath: m_Name
+      value: Camera-2
       objectReference: {fileID: 0}
     - target: {fileID: 8865203002921223600, guid: 465178581c5fe804bba13a49c38331bb,
         type: 3}

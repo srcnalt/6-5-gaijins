@@ -39,6 +39,7 @@ namespace EZCameraShake
             instanceList.Add(gameObject.name, this);
         }
 
+        public Camera camera;
         void Update()
         {
             posAddShake = Vector3.zero;
@@ -63,8 +64,8 @@ namespace EZCameraShake
                 }
             }
 
-            transform.localPosition = posAddShake + RestPositionOffset;
-            transform.localEulerAngles = rotAddShake + RestRotationOffset;
+            camera.transform.localPosition = posAddShake + RestPositionOffset;
+            camera.transform.localEulerAngles = rotAddShake + RestRotationOffset;
         }
 
         /// <summary>
