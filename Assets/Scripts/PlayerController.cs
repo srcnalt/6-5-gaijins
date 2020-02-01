@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using EZCameraShake;
 
 public class PlayerController : MonoBehaviour
 {
@@ -106,6 +107,7 @@ public class PlayerController : MonoBehaviour
 
                 if(!breakable.isBroken)
                 {
+                    CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, .3f);
                     if (isReturning)
                     {
                         score.Destroyed(-1);

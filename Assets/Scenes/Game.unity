@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -722,6 +722,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948690984}
   m_CullTransparentMesh: 0
+--- !u!1 &1073636639 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8865203001815794366, guid: 465178581c5fe804bba13a49c38331bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1172573186}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1073636641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073636639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultPosInfluence: {x: 0.15, y: 0.15, z: 0.15}
+  DefaultRotInfluence: {x: 1, y: 1, z: 1}
+  RestPositionOffset: {x: 0, y: 2.5, z: -8}
+  RestRotationOffset: {x: 5, y: 0, z: 0}
+--- !u!114 &1073636643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073636639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64941b1002d73d45a26f04fa597c5c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Magnitude: 4
+  Roughness: 4
+  FadeOutTime: 1
 --- !u!1 &1104919338
 GameObject:
   m_ObjectHideFlags: 0
