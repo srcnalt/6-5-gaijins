@@ -8,14 +8,14 @@ public class PlayerController : MonoBehaviour
 
     private Hashtable controlKeys = new Hashtable();
 
-    private bool gameOver;
     private bool isReturning;
     private GameMode mode = GameMode.Break;
 
-    private const float speed = 5;
-    private const float acceleration = 0.2f;
+    private float speed = 5;
+    private float acceleration = 0.2f;
     private float xSpeed = 0;
-
+    private float goal = 50;
+    private float initialX = 2.5f;
 
     private float leftWall = -1;
     private float rightWall = 1;
@@ -23,15 +23,21 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         controlKeys = MapControls(playerType);
+        Prepare();
+    }
+
+    private void Prepare()
+    {
         float initialPos = transform.position.x;
-        leftWall += transform.localScale.x / 2 + initialPos;
-        rightWall += -transform.localScale.x / 2 + initialPos;
+        leftWall = -1 + transform.localScale.x / 2 + initialPos;
+        rightWall = 1 - transform.localScale.x / 2 + initialPos;
     }
 
     private void Update()
     {
-        if (gameOver) return;
+        if (mode == GameMode.GameOver) return;
         MovePlayer();
+        if (IsGoal()) NextMode();
     }
 
     private bool IsGoal()
@@ -51,26 +57,47 @@ public class PlayerController : MonoBehaviour
             xSpeed -= xSpeed / 10;
        
         xSpeed = Mathf.Clamp(xSpeed, -2, 2);
-        float nextX = Time.deltaTime * xSpeed;
-        if (IsHitWall(transform.localPosition.x + nextX))
+        float moveX = Time.deltaTime * xSpeed;
+        float nextX = transform.localPosition.x + moveX;
+        if ((nextX < leftWall) || (nextX > rightWall))
         {
             xSpeed = -xSpeed / 3;
             xSpeed = Mathf.Abs(xSpeed) < 0.2 ? 0 : xSpeed;
-            nextX = Time.deltaTime * xSpeed;
+            moveX = Time.deltaTime * xSpeed;
         }
 
         transform.position += new Vector3(0, 0, Time.deltaTime * speed);
-        transform.localPosition += new Vector3(nextX, 0, 0);
+        transform.localPosition += new Vector3(moveX, 0, 0);
     }
 
-    private bool IsHitWall(float xPos)
+    private void NextMode()
     {
-        return (xPos < leftWall) || (xPos > rightWall);
+        if (mode == GameMode.Break) StartRepairMode();
+        else if (mode == GameMode.Repair) GameOver();
     }
 
-    private bool GetKey(MoveKey key)
+    private void StartRepairMode()
     {
-        return Input.GetKey((KeyCode)controlKeys[key]);
+        mode = GameMode.Repair;
+        goal = 0;
+        speed = -speed;
+        acceleration = -acceleration;
+        Vector3 nextPos = transform.position;
+        nextPos.x = nextPos.x < 0 ? initialX : -initialX;
+        transform.position = nextPos;
+        transform.rotation = new Quaternion(0, 90, 0, 0);
+        Prepare();
+    }
+
+    private void GameOver()
+    { 
+        mode = GameMode.GameOver;
+        CalculateScore();
+    }
+
+    private int CalculateScore()
+    {
+        return 0;
     }
 
     bool sentinel = false;
@@ -111,15 +138,15 @@ public class PlayerController : MonoBehaviour
                 //if (orientation == Orientation.Left) orientation = Orientation.Right;
                 //else if (orientation == Orientation.Right) orientation = Orientation.Left;
 
-                Vector3 position = transform.position;
-                if (playerType == PlayerType.PlayerOne) position.x = 5;
-                else position.x = 0;
-                transform.position = position; 
+                //Vector3 position = transform.position;
+                //if (playerType == PlayerType.PlayerOne) position.x = 5;
+                //else position.x = 0;
+                //transform.position = position; 
             }
             else if (other.CompareTag("StartWall"))
             {
                 Debug.Log("Game Over");
-                gameOver = true;
+                //gameOver = true;
             }
         }
     }
@@ -147,4 +174,10 @@ public class PlayerController : MonoBehaviour
         }
         return controlKeys;
     }
+
+    private bool GetKey(MoveKey key)
+    {
+        return Input.GetKey((KeyCode)controlKeys[key]);
+    }
+
 }
