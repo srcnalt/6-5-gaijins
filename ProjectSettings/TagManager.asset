@@ -7,7 +7,6 @@ TagManager:
   - Breakable
   - CutSceneRoom
   - EndWall
-  - Trap
   layers:
   - Default
   - TransparentFX

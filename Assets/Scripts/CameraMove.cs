@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-	[SerializeField] private Transform startTransf;
-	public Transform mainTransf;
-	[SerializeField] private Transform endTransf;
-	public Transform creditsTransf;
+	[SerializeField] private Transform idlePosition;
+	[SerializeField] private Transform focusPosition;
+	[SerializeField] private Transform endPosition;
 	[SerializeField] private Canvas blackCanvas;
 	private CanvasGroup canvasGroup;
-	public int state; // 0 , 1, 2, and 3 correspond to different camera positions
+	public int state; // 0 , 1, and 2
 
     void Start()
     {
-    	Camera.main.transform.position = startTransf.position;
+    	Camera.main.transform.position = idlePosition.position;
     	canvasGroup = blackCanvas.GetComponent<CanvasGroup>();
     	canvasGroup.alpha = 0;
     	state = 0;
@@ -23,32 +22,34 @@ public class CameraMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Space) && state == 0) {  // checks if space bar pressed while in intro scene
-        	StartCoroutine(MoveToFocus(mainTransf));
+    	Debug.Log(Camera.main.transform.position.x);
+    	Debug.Log(focusPosition.position.x);
+        if(Input.GetKey(KeyCode.Space) && state == 0) {
+        	StartCoroutine(MoveToFocus());
         }
     }
-	public void StartFadeTo(int sceneNumber) {  // initializes fade to black on fridgeand loading of input scene
-		StartCoroutine(MoveToBlack(sceneNumber));
+	public void StartFadeTo(int sceneNumber) {
+		StartCoroutine(MoveToEnd(sceneNumber));
 	}
 
-	public void StartMoveTo(Transform targetTransf) {
-		StartCoroutine(MoveToFocus(targetTransf));
-	}
-
-    private IEnumerator MoveToFocus(Transform targetTransf) {  // moves camera to focused transform's position
+    private IEnumerator MoveToFocus() {
     	float progress = 0;
     	while(progress < 1) {
     		progress += Time.deltaTime;
-    		Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, targetTransf.position, progress);
+    		Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, focusPosition.position, Time.deltaTime);
     		yield return null;
     	}
+    	if(progress >=1) {
+    		state = 1;
+    	}
+    	//
     }
 
-    public IEnumerator MoveToBlack(int sceneNumber) {  //fades to black (in fridge), then loads scene of specified index
+    public IEnumerator MoveToEnd(int sceneNumber) {
     	float progress = 0;
     	while(progress < 1) {
     		progress += Time.deltaTime;
-    		Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, endTransf.position, Time.deltaTime);
+    		Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, endPosition.position, Time.deltaTime);
     		canvasGroup.alpha = progress;
     		yield return null;
     	}

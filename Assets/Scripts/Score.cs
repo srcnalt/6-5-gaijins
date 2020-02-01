@@ -3,13 +3,21 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    [SerializeField] private Text score;
+    [SerializeField] private Text destroyed;
+    [SerializeField] private Text repaired;
 
-    public int scoreVal = 0;
+    private int destroyedVal = 0;
+    private int repairedVal = 0;
 
-    public void AddScore(int value)
+    public void Destroyed(int value)
     {
-        scoreVal += value;
-        score.text = scoreVal.ToString();
+        destroyedVal += value;
+        destroyed.text = destroyedVal.ToString();
+    }
+
+    public void Repaired(int value)
+    {
+        repairedVal += value;
+        repaired.text = repairedVal.ToString();
     }
 }
