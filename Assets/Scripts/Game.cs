@@ -18,7 +18,7 @@ public class Game : MonoBehaviour
     }
 
     void OnMouseUp() {
-      Application.LoadLevel(1);
+      Application.LoadLevel(0);
     }
 	
 }

@@ -25,7 +25,7 @@ using UnityEngine;
     void OnMouseUp() {
 		if(isStart)
 		{
-			mController.GetComponent<CameraMove>().StartFadeTo(2);
+			mController.GetComponent<CameraMove>().StartFadeTo(1);
 			//Application.LoadLevel(2);
 		}
 		else if (isCredits) {

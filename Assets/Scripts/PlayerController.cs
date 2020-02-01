@@ -207,5 +207,5 @@ public class PlayerController : MonoBehaviour
     {
         return Input.GetKey((KeyCode)controlKeys[key]);
     }
-
+    
 }
