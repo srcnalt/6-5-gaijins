@@ -145,7 +145,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15562778}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03, y: 3.1, z: 1.62}
+  m_LocalPosition: {x: -0.029999971, y: 3.1, z: 1.6199999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 309632385}
   - component: {fileID: 309632384}
   m_Layer: 0
-  m_Name: QuitButton (1)
+  m_Name: ReturnToMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 309632383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70d84044875495c4da8e58a56d6a920a, type: 3}
+  m_Script: {fileID: 11500000, guid: dd0659a2320e8e04ca172498433ca1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isStart: 0
@@ -936,7 +936,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 672212934}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70d84044875495c4da8e58a56d6a920a, type: 3}
+  m_Script: {fileID: 11500000, guid: dd0659a2320e8e04ca172498433ca1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isStart: 0
@@ -1045,7 +1045,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 770341576}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8ccb36558badab4da43e80c1f1ca7bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 43e1e48fabe2b3d40af3069e7e00968b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   startTransf: {fileID: 615354325}
@@ -1904,7 +1904,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1969526742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70d84044875495c4da8e58a56d6a920a, type: 3}
+  m_Script: {fileID: 11500000, guid: dd0659a2320e8e04ca172498433ca1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isStart: 0
@@ -2314,7 +2314,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2074770688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70d84044875495c4da8e58a56d6a920a, type: 3}
+  m_Script: {fileID: 11500000, guid: dd0659a2320e8e04ca172498433ca1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isStart: 1

@@ -47,6 +47,10 @@ public class PlayerController : MonoBehaviour
             case GameMode.GameOver:
                 break;
         }
+
+        if(transform.position.z < 0) {  // bit of tacked-on code which 
+            Application.LoadLevel(1);
+        }
     }
 
     private void MovePlayer()
