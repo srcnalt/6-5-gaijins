@@ -9,21 +9,25 @@ public class CameraMove : MonoBehaviour
 	[SerializeField] private Transform endPosition;
 	[SerializeField] private Canvas blackCanvas;
 	private CanvasGroup canvasGroup;
+	private int state; // 0 , 1, and 2
 
     void Start()
     {
     	Camera.main.transform.position = idlePosition.position;
     	canvasGroup = blackCanvas.GetComponent<CanvasGroup>();
     	canvasGroup.alpha = 0;
+    	state = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Space) && Camera.main.transform.position != focusPosition.position) {
+    	Debug.Log(Camera.main.transform.position.x);
+    	Debug.Log(focusPosition.position.x);
+        if(Input.GetKey(KeyCode.Space) && state == 0) {
         	StartCoroutine(MoveToFocus());
         }
-        else if(Input.GetKey(KeyCode.Space) ) {
+        else if(Input.GetKey(KeyCode.Space) && state == 1) {
         	StartCoroutine(MoveToEnd());
         }
     }
@@ -36,6 +40,9 @@ public class CameraMove : MonoBehaviour
     		print(progress);
     		yield return null;
     	}
+    	if(progress >=1) {
+    		state = 1;
+    	}
     	//
     }
 
@@ -46,6 +53,9 @@ public class CameraMove : MonoBehaviour
     		Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, endPosition.position, Time.deltaTime);
     		canvasGroup.alpha = progress;
     		yield return null;
+    	}
+    	if(progress >= 1) {
+    		state = 2;
     	}
     }
 }
