@@ -51,12 +51,14 @@
                 float4 currentPos = float4(texCoord.x * 2 - 1, (1 - texCoord.y) * 2 - 1, zOverW, 1); 
                 float2 velocity = -currentPos / 300.f;
 
+                velocity.y = velocity.y * (abs(velocity.x) + 0.3);
+
                 texCoord += velocity;
-                for(int i = 1; i < 10; ++i, texCoord += velocity) {
+                for(int i = 1; i < 12; ++i, texCoord += velocity) {
                     float4 currentColor = tex2D(_MainTex, texCoord);  
                     color += currentColor;
                 } 
-                color = color / 10; 
+                color = color / 12; 
 
 
                 color = color + pow(depth, 10) * float4(0.9,0.9,0.9,1);
