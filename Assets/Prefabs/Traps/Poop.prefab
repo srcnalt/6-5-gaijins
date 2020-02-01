@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4779592717139365112}
   - component: {fileID: 4543992384612857550}
   - component: {fileID: 7796585915029522999}
+  - component: {fileID: 227364088621388787}
   m_Layer: 0
   m_Name: Poop
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &227364088621388787
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8363148878382644971}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.73416924, y: 0.47191352, z: 0.64884764}
+  m_Center: {x: -0.0019408017, y: 0.17022881, z: -0.0000003874302}

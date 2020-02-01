@@ -131,16 +131,16 @@ public class PlayerController : MonoBehaviour
                 {
                     if (isReturning)
                     {
-                        score.Destroyed(-1);
+                        score.AddScore(-1);
                     }
                     else
                     {
-                        score.Destroyed(1);
+                        score.AddScore(1);
                     }
                 }
                 else if (breakable.isBroken && isReturning)
                 {
-                    score.Repaired(1);
+                    score.AddScore(1);
                 }
 
                 breakable.SwitchState();
@@ -162,6 +162,10 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Game Over");
                 mode = GameMode.GameOver;
                 //gameOver = true;
+            }
+            else if (other.CompareTag("Trap"))
+            {
+                score.AddScore(-1);
             }
         }
     }
