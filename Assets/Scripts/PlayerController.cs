@@ -6,87 +6,63 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerType playerType;
     [SerializeField] private Score score;
 
+    private Hashtable controlKeys = new Hashtable();
+
     private bool gameOver;
-    private float speed = 5;
-    private float switchSpeed = 3;
-    private bool isMoving;
     private bool isReturning;
-    private Orientation orientation = Orientation.Center;
+
+    private const float speed = 5;
+    private const float acceleration = 0.2f;
+    private float xSpeed = 0;
+
+
+    private float leftWall = -1;
+    private float rightWall = 1;
+
+    private void Start()
+    {
+        controlKeys = MapControls(playerType);
+        float initialPos = transform.position.x;
+        leftWall += transform.localScale.x / 2 + initialPos;
+        rightWall += -transform.localScale.x / 2 + initialPos;
+    }
 
     private void Update()
     {
         if (gameOver) return;
+        MovePlayer();
+    }
 
-        transform.position += new Vector3(0, 0, Time.deltaTime * speed * transform.forward.z);
-
-        if (!isMoving)
+    private void MovePlayer()
+    {
+        if (GetKey(MoveKey.Left))
+            xSpeed -= acceleration;
+        else if (GetKey(MoveKey.Right))
+            xSpeed += acceleration;
+        else
+            xSpeed -= xSpeed / 10;
+       
+        xSpeed = Mathf.Clamp(xSpeed, -2, 2);
+        float nextX = Time.deltaTime * xSpeed;
+        if (IsHitWall(transform.localPosition.x + nextX))
         {
-            if (GetKey(MoveKey.Left))
-            {
-                StartCoroutine(MovePlayer(Orientation.Left));
-            }
-            else if (GetKey(MoveKey.Right))
-            {
-                StartCoroutine(MovePlayer(Orientation.Right));
-            }
+            xSpeed = -xSpeed / 3;
+            xSpeed = Mathf.Abs(xSpeed) < 0.2 ? 0 : xSpeed;
+            nextX = Time.deltaTime * xSpeed;
         }
+
+        transform.position += new Vector3(0, 0, Time.deltaTime * speed);
+        transform.localPosition += new Vector3(nextX, 0, 0);
+    }
+
+    private bool IsHitWall(float xPos)
+    {
+        return (xPos < leftWall) || (xPos > rightWall);
     }
 
     private bool GetKey(MoveKey key)
     {
-        if(playerType == PlayerType.PlayerOne)
-        {
-            if (key == MoveKey.Left) 
-                return Input.GetKey(KeyCode.A);
-            else
-                return Input.GetKey(KeyCode.D);
-        }
-        else
-        {
-            if (key == MoveKey.Left)
-                return Input.GetKey(KeyCode.J);
-            else
-                return Input.GetKey(KeyCode.L);
-        }
-    }
-
-    private IEnumerator MovePlayer(Orientation direction)
-    {
-        if (direction == orientation)
-        {
-            yield return null;
-        }
-        else
-        {
-            isMoving = true;
-
-            if (direction == Orientation.Left)
-            {
-                if (orientation != Orientation.Left)
-                {
-                    orientation--;
-                }
-            }
-            else if (direction == Orientation.Right)
-            {
-                if (orientation != Orientation.Right)
-                {
-                    orientation++;
-                }
-            }
-
-            float progress = 0;
-            int moveDir = (direction == Orientation.Right) ? 1 : -1;
-
-            while (progress < 0.8f)
-            {
-                progress += Time.deltaTime * switchSpeed;
-                transform.localPosition += new Vector3(moveDir * Time.deltaTime * switchSpeed * transform.right.x, 0, 0);
-                yield return null;
-            }
-
-            isMoving = false;
-        }
+        return Input.GetKey((KeyCode)controlKeys[key]);
     }
 
     bool sentinel = false;
@@ -124,8 +100,8 @@ public class PlayerController : MonoBehaviour
                 isReturning = true;
                 transform.Rotate(new Vector3(0, 180, 0));
 
-                if (orientation == Orientation.Left) orientation = Orientation.Right;
-                else if (orientation == Orientation.Right) orientation = Orientation.Left;
+                //if (orientation == Orientation.Left) orientation = Orientation.Right;
+                //else if (orientation == Orientation.Right) orientation = Orientation.Left;
 
                 Vector3 position = transform.position;
                 if (playerType == PlayerType.PlayerOne) position.x = 5;
@@ -146,5 +122,21 @@ public class PlayerController : MonoBehaviour
         {
             sentinel = false;
         }
+    }
+
+    private Hashtable MapControls(PlayerType type)
+    {
+        Hashtable controlKeys = new Hashtable();
+        if (type == PlayerType.PlayerOne)
+        {
+            controlKeys[MoveKey.Left] = KeyCode.A;
+            controlKeys[MoveKey.Right] = KeyCode.D;
+        }
+        else
+        {
+            controlKeys[MoveKey.Left] = KeyCode.J;
+            controlKeys[MoveKey.Right] = KeyCode.L;
+        }
+        return controlKeys;
     }
 }
