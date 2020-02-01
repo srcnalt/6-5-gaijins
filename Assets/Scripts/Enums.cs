@@ -16,3 +16,10 @@ public enum MoveKey
     Left,
     Right
 }
+
+public enum GameMode
+{
+    Break,
+    Repair,
+    GameOver
+}
