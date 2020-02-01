@@ -1,4 +1,4 @@
-﻿Shader "Custom/FogShader"
+﻿Shader "Custom/PostEffectShader"
 {
     Properties
     {
@@ -40,13 +40,14 @@
             sampler2D _MainTex;
             sampler2D _CameraDepthTexture;
 
-            fixed4 frag (v2f i) : SV_Target
+            fixed4 frag (v2f IN) : SV_Target
             {
-                fixed4 col = tex2D(_MainTex, i.uv);
-                float depth = tex2D(_CameraDepthTexture, i.uv).r;
+                fixed4 color = tex2D(_MainTex, IN.uv);
+                float depth = tex2D(_CameraDepthTexture, IN.uv).r;
                 depth = 1 - clamp(depth * 10, 0, 1);
-               
-                return col + pow(depth, 10) * float4(0.9,0.9,0.9,1);
+
+                color = color + pow(depth, 10) * float4(0.9,0.9,0.9,1);
+                return color;
             }
             ENDCG
         }
