@@ -427,6 +427,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 883425050}
     m_Modifications:
+    - target: {fileID: 5797803613608133629, guid: 174987bcbbfb30e459e562c18ff0f3c1,
+        type: 3}
+      propertyPath: m_Text
+      value: 'The Gotte brothers are in a big argument. THIS MEANS WAR!!!"
+
+        (Destroy
+        more of the other player''s room to win)
+
+        Press <b>Space</b> to continue...'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6335181084827508607, guid: 174987bcbbfb30e459e562c18ff0f3c1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000015258789
+      objectReference: {fileID: 0}
+    - target: {fileID: 6335181084827508607, guid: 174987bcbbfb30e459e562c18ff0f3c1,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 62
+      objectReference: {fileID: 0}
     - target: {fileID: 7321919805026696210, guid: 174987bcbbfb30e459e562c18ff0f3c1,
         type: 3}
       propertyPath: m_Name
@@ -868,6 +888,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1320434443}
     m_Modifications:
+    - target: {fileID: 3582817053889756598, guid: bb92be5d36fc21c44ba40cd0486bd9b9,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Mother: "Ahh, I''m almost home... Oh dear, I hear... crashing?"
+
+        Press
+        <b>Space</b> to continue...'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6734983824551570533, guid: bb92be5d36fc21c44ba40cd0486bd9b9,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 6753289488723381905, guid: bb92be5d36fc21c44ba40cd0486bd9b9,
         type: 3}
       propertyPath: m_Name
@@ -2927,6 +2960,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1320434443}
     m_Modifications:
+    - target: {fileID: 987699279133982636, guid: ab78729ad2466094aa04520cfb5656f3,
+        type: 3}
+      propertyPath: m_Text
+      value: "*doorbell rings\r*\n\"Aaaaah, she's almost home!!! We gotta hurry and
+        fix everything we broke!\"\nPress <b>Space</b> to continue..."
+      objectReference: {fileID: 0}
     - target: {fileID: 5058011527341957610, guid: ab78729ad2466094aa04520cfb5656f3,
         type: 3}
       propertyPath: m_Sprite
@@ -3047,6 +3086,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960415575326396424, guid: ab78729ad2466094aa04520cfb5656f3,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab78729ad2466094aa04520cfb5656f3, type: 3}
