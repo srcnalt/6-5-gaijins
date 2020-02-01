@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     private bool gameOver;
     private bool isReturning;
+    private GameMode mode = GameMode.Break;
 
     private const float speed = 5;
     private const float acceleration = 0.2f;
@@ -31,6 +32,13 @@ public class PlayerController : MonoBehaviour
     {
         if (gameOver) return;
         MovePlayer();
+    }
+
+    private bool IsGoal()
+    {
+        if (mode == GameMode.Break) return transform.position.z > goal;
+        else if (mode == GameMode.Repair) return transform.position.z < goal;
+        return false;
     }
 
     private void MovePlayer()
