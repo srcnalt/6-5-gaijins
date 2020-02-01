@@ -3683,6 +3683,8 @@ MonoBehaviour:
     type: 3}
   breakableObjects:
   - {fileID: 707508084730294487, guid: f8ffa4356c75e314cb1236706bc0fe98, type: 3}
+  - {fileID: 7441812033964508260, guid: f7290bde48a18f643888f405dcab8852, type: 3}
+  - {fileID: 1718228653547475956, guid: 4a2899e05e5b0d64996e154629b99e1d, type: 3}
 --- !u!1001 &8299019468449537006
 PrefabInstance:
   m_ObjectHideFlags: 0

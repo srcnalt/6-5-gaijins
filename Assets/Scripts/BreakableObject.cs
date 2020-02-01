@@ -10,18 +10,18 @@ public class BreakableObject : MonoBehaviour
 
     private void Start()
     {
-        MeshRenderer renderer = main.GetComponent<MeshRenderer>();
+        BoxCollider collider = main.GetComponent<BoxCollider>();
 
         orientation = (Orientation)Random.Range(0, 3);
 
         switch (orientation)
         {
             case Orientation.Left:
-                transform.position += new Vector3(-1 + renderer.bounds.extents.x, 0, 0);
+                transform.position += new Vector3(-1 + collider.size.z / 2, 0, 0);
                 transform.Rotate(new Vector3(0, -90, 0));
                 break;
             case Orientation.Right:
-                transform.position += new Vector3(1 - renderer.bounds.extents.x, 0, 0);
+                transform.position += new Vector3(1 - collider.size.z / 2, 0, 0);
                 transform.Rotate(new Vector3(0, 90, 0));
                 break;
             case Orientation.Center:
