@@ -24,6 +24,15 @@ public class RoadManager : MonoBehaviour
 
     private void CreateLevel(Transform lane)
     {
+        GameObject startWall = Instantiate(startWallPrefab, lane);
+        startWall.transform.position += PieceLength * -0.5f;
+
+        for (int i = 0; i < RoadCount; i++)
+        {
+            GameObject instance = Instantiate(roadPiecePrefab, lane);
+            instance.transform.position += PieceLength * i;
+        }
+
         for (int i = 3; i < RoadCount * 3 - 3; i++)
         {
             int index = Random.Range(0, breakableObjects.Length);
