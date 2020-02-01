@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     private float leftWall = -1;
     private float rightWall = 1;
 
+    private int trapsLeft = 5;
+
     private void Start()
     {
         controlKeys = MapControls(playerType);
@@ -63,11 +65,12 @@ public class PlayerController : MonoBehaviour
     private bool trapCooldown;
     private void DropTrap()
     {
-        if (GetKey(MoveKey.Trap) && !trapCooldown)
+        if (GetKey(MoveKey.Trap) && !trapCooldown && trapsLeft > 0)
         {
             trapCooldown = true;
             GameObject instance = Instantiate(traps[UnityEngine.Random.Range(0, traps.Length)]);
             instance.transform.position = transform.position;
+            trapsLeft -= 1;
 
             Invoke("TrapReady", 0.5f);
         }
@@ -207,5 +210,5 @@ public class PlayerController : MonoBehaviour
     {
         return Input.GetKey((KeyCode)controlKeys[key]);
     }
-    
+
 }
