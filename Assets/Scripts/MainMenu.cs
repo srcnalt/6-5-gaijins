@@ -26,11 +26,11 @@
     void OnMouseUp() {
 		if(isStart)
 		{
-			mController.GetComponent<CameraMove>().StartFadeTo(2);
+			mController.GetComponent<CameraMove>().StartFadeTo(1);
 			//Application.LoadLevel(2);
 		}
 		else if (isCredits) {
-			mController.GetComponent<CameraMove>().StartFadeTo(0);
+			mController.GetComponent<CameraMove>().StartFadeTo(2);
 			// while(mController.GetComponent<CameraMove>().state != 2){
 			// 	//
 			// }
