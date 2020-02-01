@@ -2,7 +2,7 @@
 
 public class RoadManager : MonoBehaviour
 {
-    private const int RoadCount = 12;
+    private const int RoadCount = 20;
     private readonly Vector3 PieceLength = new Vector3(0, 0, 6);
     private readonly Vector3 PieceForwardOffset = new Vector3(0, 0, 2);
 
