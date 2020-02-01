@@ -3682,11 +3682,7 @@ MonoBehaviour:
   startWallPrefab: {fileID: 5689235115285504494, guid: 5f6edc89c8ba28f46a47efe838dd97cd,
     type: 3}
   breakableObjects:
-  - {fileID: 2165574695529724721, guid: 61ea4a83844c1744ebb1b31b810471ec, type: 3}
-  - {fileID: 2165574695529724721, guid: d28b6d0d0b4a6bc459ec570d3f44a4c0, type: 3}
-  - {fileID: 2165574695529724721, guid: 38db2643fb512e540941e535b010fe11, type: 3}
-  - {fileID: 2165574695529724721, guid: b1116490056de8644bd2f36039b27575, type: 3}
-  - {fileID: 2165574695529724721, guid: 1f4e57cfb2229374982a7ef084beebef, type: 3}
+  - {fileID: 707508084730294487, guid: f8ffa4356c75e314cb1236706bc0fe98, type: 3}
 --- !u!1001 &8299019468449537006
 PrefabInstance:
   m_ObjectHideFlags: 0
