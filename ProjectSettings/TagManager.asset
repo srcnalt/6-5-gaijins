@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Breakable
-  - ReturnWall
   - CutSceneRoom
+  - EndWall
   layers:
   - Default
   - TransparentFX

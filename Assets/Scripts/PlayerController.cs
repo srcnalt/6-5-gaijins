@@ -9,12 +9,11 @@ public class PlayerController : MonoBehaviour
     private Hashtable controlKeys = new Hashtable();
 
     private bool isReturning;
-    private GameMode mode = GameMode.Break;
+    public static GameMode mode = GameMode.Break;
 
     private float speed = 5;
     private float acceleration = 0.2f;
     private float xSpeed = 0;
-    private float goal = 50;
     private float initialX = 2.5f;
 
     private float leftWall = -1;
@@ -35,16 +34,28 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (mode == GameMode.GameOver) return;
-        MovePlayer();
-        if (IsGoal()) NextMode();
+        switch (mode)
+        {
+            case GameMode.Break:
+                MovePlayer();
+                break;
+            case GameMode.CutScene:
+                EndCutScene();
+                break;
+            case GameMode.Repair:
+                MovePlayer();
+                break;
+            case GameMode.GameOver:
+                break;
+        }
     }
 
-    private bool IsGoal()
+    private void EndCutScene()
     {
-        if (mode == GameMode.Break) return transform.position.z > goal;
-        else if (mode == GameMode.Repair) return transform.position.z < goal;
-        return false;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartRepairMode();
+        }
     }
 
     private void MovePlayer()
@@ -70,22 +81,15 @@ public class PlayerController : MonoBehaviour
         transform.localPosition += new Vector3(moveX, 0, 0);
     }
 
-    private void NextMode()
-    {
-        if (mode == GameMode.Break) StartRepairMode();
-        else if (mode == GameMode.Repair) GameOver();
-    }
-
     private void StartRepairMode()
     {
         mode = GameMode.Repair;
-        goal = 0;
         speed = -speed;
         acceleration = -acceleration;
         Vector3 nextPos = transform.position;
         nextPos.x = nextPos.x < 0 ? initialX : -initialX;
         transform.position = nextPos;
-        transform.Rotate(new Vector3(0, 180, 0));
+        transform.rotation = new Quaternion(0, 90, 0, 0);
         Prepare();
     }
 
@@ -128,15 +132,12 @@ public class PlayerController : MonoBehaviour
 
                 breakable.SwitchState();
             }
-            else if (other.CompareTag("EndWall"))
+            else if (other.CompareTag("CutSceneRoom"))
             {
-                //other.gameObject.SetActive(false);
+                isReturning = true;
+                transform.Rotate(new Vector3(0, 180, 0));
 
-                //isReturning = true;
-                //transform.Rotate(new Vector3(0, 180, 0));
-
-                mode = GameMode.Repair;
-
+                mode = GameMode.CutScene;
                 //if (orientation == Orientation.Left) orientation = Orientation.Right;
                 //else if (orientation == Orientation.Right) orientation = Orientation.Left;
 
@@ -145,7 +146,7 @@ public class PlayerController : MonoBehaviour
                 //else position.x = 0;
                 //transform.position = position; 
             }
-            else if (other.CompareTag("StartWall"))
+            else if (other.CompareTag("EndWall"))
             {
                 Debug.Log("Game Over");
                 //gameOver = true;

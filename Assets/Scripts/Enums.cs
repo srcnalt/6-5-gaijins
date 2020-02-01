@@ -20,6 +20,8 @@ public enum MoveKey
 public enum GameMode
 {
     Break,
+    CutScene,
     Repair,
-    GameOver
+    GameOver,
+    None
 }
