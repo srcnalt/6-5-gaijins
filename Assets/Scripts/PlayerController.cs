@@ -40,21 +40,12 @@ public class PlayerController : MonoBehaviour
                 MovePlayer();
                 break;
             case GameMode.CutScene:
-                EndCutScene();
                 break;
             case GameMode.Repair:
                 MovePlayer();
                 break;
             case GameMode.GameOver:
                 break;
-        }
-    }
-
-    private void EndCutScene()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartRepairMode();
         }
     }
 
@@ -81,15 +72,14 @@ public class PlayerController : MonoBehaviour
         transform.localPosition += new Vector3(moveX, 0, 0);
     }
 
-    private void StartRepairMode()
+    public void StartRepairMode()
     {
-        mode = GameMode.Repair;
         speed = -speed;
         acceleration = -acceleration;
         Vector3 nextPos = transform.position;
         nextPos.x = nextPos.x < 0 ? initialX : -initialX;
         transform.position = nextPos;
-        transform.rotation = new Quaternion(0, 90, 0, 0);
+        transform.Rotate(new Vector3(0, 180, 0));
         Prepare();
     }
 
@@ -135,8 +125,6 @@ public class PlayerController : MonoBehaviour
             else if (other.CompareTag("CutSceneRoom"))
             {
                 isReturning = true;
-                transform.Rotate(new Vector3(0, 180, 0));
-
                 mode = GameMode.CutScene;
                 //if (orientation == Orientation.Left) orientation = Orientation.Right;
                 //else if (orientation == Orientation.Right) orientation = Orientation.Left;
