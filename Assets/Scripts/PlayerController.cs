@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
         Vector3 nextPos = transform.position;
         nextPos.x = nextPos.x < 0 ? initialX : -initialX;
         transform.position = nextPos;
-        transform.rotation = new Quaternion(0, 90, 0, 0);
+        transform.Rotate(new Vector3(0, 180, 0));
         Prepare();
     }
 
@@ -130,10 +130,10 @@ public class PlayerController : MonoBehaviour
             }
             else if (other.CompareTag("EndWall"))
             {
-                other.gameObject.SetActive(false);
+                //other.gameObject.SetActive(false);
 
-                isReturning = true;
-                transform.Rotate(new Vector3(0, 180, 0));
+                //isReturning = true;
+                //transform.Rotate(new Vector3(0, 180, 0));
 
                 mode = GameMode.Repair;
 
