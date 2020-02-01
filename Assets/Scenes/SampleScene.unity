@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1485,7 +1485,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084042124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.854249, y: -1.8457031, z: -4.6329694}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1507,7 +1507,7 @@ MonoBehaviour:
     type: 3}
   laneOne: {fileID: 762387880}
   laneTwo: {fileID: 1368614576}
-  endWallPrefab: {fileID: 5689235115285504494, guid: e80b6f6bbf08bfa48af0e0e2ee37b0f7,
+  endWallPrefab: {fileID: 4956092260807203676, guid: 50460285ea55c804bb8db8c65c565f4d,
     type: 3}
   startWallPrefab: {fileID: 5689235115285504494, guid: 5f6edc89c8ba28f46a47efe838dd97cd,
     type: 3}

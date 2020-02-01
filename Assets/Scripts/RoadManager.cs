@@ -17,6 +17,9 @@ public class RoadManager : MonoBehaviour
     {
         CreateLevel(laneOne);
         CreateLevel(laneTwo);
+
+        GameObject cutSceneRoom = Instantiate(endWallPrefab, transform);
+        cutSceneRoom.transform.position += PieceLength * RoadCount;
     }
 
     private void CreateLevel(Transform lane)
@@ -36,8 +39,5 @@ public class RoadManager : MonoBehaviour
             GameObject instance = Instantiate(breakableObjects[index], lane);
             instance.transform.position += PieceForwardOffset * i;
         }
-
-        GameObject endWall = Instantiate(endWallPrefab, lane);
-        endWall.transform.position += PieceLength * (RoadCount - 0.5f);
     }
 }

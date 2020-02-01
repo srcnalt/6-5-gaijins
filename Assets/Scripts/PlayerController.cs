@@ -135,6 +135,8 @@ public class PlayerController : MonoBehaviour
                 isReturning = true;
                 transform.Rotate(new Vector3(0, 180, 0));
 
+                mode = GameMode.Repair;
+
                 //if (orientation == Orientation.Left) orientation = Orientation.Right;
                 //else if (orientation == Orientation.Right) orientation = Orientation.Left;
 

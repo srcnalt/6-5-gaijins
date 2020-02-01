@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1192220899216331123}
   - component: {fileID: 7719062283731587534}
   m_Layer: 0
-  m_Name: StartWall
+  m_Name: FinishWall
   m_TagString: StartWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
