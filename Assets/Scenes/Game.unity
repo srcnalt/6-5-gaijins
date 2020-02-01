@@ -2066,6 +2066,11 @@ PrefabInstance:
       propertyPath: AudioManager
       value: 
       objectReference: {fileID: 1779915468}
+    - target: {fileID: 8865203002921223612, guid: 465178581c5fe804bba13a49c38331bb,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1073636643}
     - target: {fileID: 8865203002921223613, guid: 465178581c5fe804bba13a49c38331bb,
         type: 3}
       propertyPath: m_CollisionDetection
@@ -4134,6 +4139,11 @@ PrefabInstance:
       propertyPath: AudioManager
       value: 
       objectReference: {fileID: 1779915468}
+    - target: {fileID: 8865203002921223612, guid: 465178581c5fe804bba13a49c38331bb,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1960751694}
     - target: {fileID: 8865203002921223613, guid: 465178581c5fe804bba13a49c38331bb,
         type: 3}
       propertyPath: m_CollisionDetection
