@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         float nextX = transform.localPosition.x + moveX;
         if ((nextX < leftWall) || (nextX > rightWall))
         {
-            xSpeed = -xSpeed / 3;
+            xSpeed = -xSpeed / 2;
             xSpeed = Mathf.Abs(xSpeed) < 0.2 ? 0 : xSpeed;
             moveX = Time.deltaTime * xSpeed;
         }
