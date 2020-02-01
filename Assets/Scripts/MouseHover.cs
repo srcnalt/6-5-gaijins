@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class MouseHover : MonoBehaviour
 {
+	bool isInvis = false;
     void Start() {
-		GetComponent<Renderer>().material.color = Color.white;
+		//
 	}
 
 	void OnMouseEnter() {
-		GetComponent<Renderer>().material.color = Color.cyan;
+		if(this.GetComponent<Renderer>().enabled == false) {
+			isInvis = true;
+		}
+		else {
+			GetComponent<Renderer>().material.color = Color.cyan;
+		}
+		this.GetComponent<Renderer>().enabled = true;
 	}
 
 	void OnMouseExit() {
-		GetComponent<Renderer>().material.color = Color.white;
+		if(isInvis == true) {
+			this.GetComponent<Renderer>().enabled = false;
+		}
+		else {
+			this.GetComponent<Renderer>().material.color=Color.white;
+		}
 	}
 }

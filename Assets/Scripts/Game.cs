@@ -7,7 +7,8 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.GetComponent<Renderer>().enabled = true;
+        this.GetComponent<Renderer>().material.color=Color.white;
     }
 
     // Update is called once per frame
@@ -17,7 +18,6 @@ public class Game : MonoBehaviour
     }
 
     void OnMouseUp() {
-      GetComponent<Renderer>().material.color=Color.blue;
       Application.LoadLevel(1);
     }
 	
