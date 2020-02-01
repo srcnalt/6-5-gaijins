@@ -152,6 +152,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 7bbe3a661e309894e96861b6058be9df,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d910d5228dca90747aac7b4045023590, type: 2}
+    - target: {fileID: -1504981713932161579, guid: 7bbe3a661e309894e96861b6058be9df,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: d910d5228dca90747aac7b4045023590, type: 2}
     - target: {fileID: -927199367670048503, guid: 7bbe3a661e309894e96861b6058be9df,
         type: 3}
       propertyPath: m_Name
@@ -161,6 +171,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Breakable
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7bbe3a661e309894e96861b6058be9df,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bbe3a661e309894e96861b6058be9df, type: 3}
@@ -253,6 +268,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 2589cb3fbf022a447a581e65311e6445,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d910d5228dca90747aac7b4045023590, type: 2}
+    - target: {fileID: -1504981713932161579, guid: 2589cb3fbf022a447a581e65311e6445,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7daaef93cfdebb14690c0ce8d2556e53, type: 2}
     - target: {fileID: -927199367670048503, guid: 2589cb3fbf022a447a581e65311e6445,
         type: 3}
       propertyPath: m_Name
@@ -294,6 +319,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dust
       objectReference: {fileID: 0}
+    - target: {fileID: 4957837542085609333, guid: a2caa6a2cda67d841b57b4bad071c418,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d910d5228dca90747aac7b4045023590, type: 2}
+    - target: {fileID: 4957837542085609333, guid: a2caa6a2cda67d841b57b4bad071c418,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: d910d5228dca90747aac7b4045023590, type: 2}
     - target: {fileID: 4957837542085609335, guid: a2caa6a2cda67d841b57b4bad071c418,
         type: 3}
       propertyPath: m_LocalPosition.x

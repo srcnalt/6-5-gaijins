@@ -152,6 +152,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 3dce03e8891afbb4599baba4574e6d9f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 680f8beb0d77ccf46a72701b053e51f1, type: 2}
     - target: {fileID: -927199367670048503, guid: 3dce03e8891afbb4599baba4574e6d9f,
         type: 3}
       propertyPath: m_Name
@@ -327,6 +332,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: eda9db4ef529ec346ab0d2b82e5b0cfd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5b3225e1c45bb1a4c91999273db83f1e, type: 2}
     - target: {fileID: -927199367670048503, guid: eda9db4ef529ec346ab0d2b82e5b0cfd,
         type: 3}
       propertyPath: m_Name
@@ -336,6 +346,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Breakable
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: eda9db4ef529ec346ab0d2b82e5b0cfd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eda9db4ef529ec346ab0d2b82e5b0cfd, type: 3}
