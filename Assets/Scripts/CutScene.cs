@@ -1,12 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CutScene : MonoBehaviour
 {
     [SerializeField] private Image blackScreen;
     [SerializeField] private GameObject[] pages;
     private int pageIndex = 0;
+
+    [SerializeField] private Score playerOneScore;
+    [SerializeField] private Score playerTwoScore;
+
+    [SerializeField] private GameObject winLose;
+    [SerializeField] private Text playerLabel;
+    [SerializeField] private Text scoreLabel;
 
     private void Update()
     {
@@ -22,12 +30,57 @@ public class CutScene : MonoBehaviour
                     ChangePages();
                 }
                 break;
+            case GameMode.GameOver:
+                StartCoroutine(ShowScore());
+                break;
+            case GameMode.Stop:
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    PlayerController.mode = GameMode.Break;
+                    SceneManager.LoadScene(1);
+                }
+                break;
         }
     }
 
     public void StartCutScene()
     {
         StartCoroutine(StartCutSceneAsync(true));
+    }
+
+    private IEnumerator ShowScore()
+    {
+        PlayerController.mode = GameMode.Stop;
+
+        Color color = blackScreen.color;
+
+        while (blackScreen.color.a < 1)
+        {
+            color.a += Time.deltaTime;
+            blackScreen.color = color;
+            yield return null;
+        }
+
+        winLose.SetActive(true);
+
+        int p1 = playerOneScore.scoreVal;
+        int p2 = playerTwoScore.scoreVal;
+
+        if (p1 > p2)
+        {
+            playerLabel.text = "Player 1 Wins!";
+            scoreLabel.text = "Score: " + p1;
+        }
+        else if (p1 < p2)
+        {
+            playerLabel.text = "Player 2 Wins!";
+            scoreLabel.text = "Score: " + p2;
+        }
+        else
+        {
+            playerLabel.text = "Tie!";
+            scoreLabel.text = "Score: " + p1;
+        }
     }
 
     private IEnumerator StartCutSceneAsync(bool fade)
