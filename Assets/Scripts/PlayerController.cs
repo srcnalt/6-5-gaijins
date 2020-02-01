@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public static GameMode mode = GameMode.Instructions;
 
     private float speed = 5;
-    private float acceleration = 0.12f;
+    private float acceleration = 0.16f;
     private float xSpeed = 0;
     private float initialX = 2.5f;
     private float baseRotation = 20;
@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour
                     AudioManager.GetComponent<AudioSource>().PlayOneShot(AudioManager.GetComponent<AudioLoader>().GetBreakingSound(),0.5f); // plays random breaking sound
                     Debug.Log(playerType);
                     CameraShaker.Instance.camera = camera;
-                    CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, .3f);
+                    CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, .3f);
                     if (isReturning)
                     {
                         score.AddScore(-1);
