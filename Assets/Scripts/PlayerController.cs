@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject AudioManager;
     [SerializeField] private PlayerType playerType;
     [SerializeField] private Score score;
     [SerializeField] private Transform ram;
@@ -129,6 +130,7 @@ public class PlayerController : MonoBehaviour
 
                 if(!breakable.isBroken)
                 {
+                    AudioManager.GetComponent<AudioSource>().PlayOneShot(AudioManager.GetComponent<AudioLoader>().GetBreakingSound(),0.5f); // plays random breaking sound
                     if (isReturning)
                     {
                         score.AddScore(-1);
