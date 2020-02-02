@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public GameObject AudioManager;
     [SerializeField] private PlayerType playerType;
     [SerializeField] private Score score;
+    [SerializeField] private TrapsUsed trapsUsed;
     [SerializeField] private Transform ram;
     [SerializeField] private Camera camera;
 
@@ -84,6 +85,8 @@ public class PlayerController : MonoBehaviour
             trapCooldown = true;
             GameObject instance = Instantiate(traps[UnityEngine.Random.Range(0, traps.Length)]);
             instance.transform.position = transform.position;
+
+            trapsUsed.setValue(count);
 
             Invoke("TrapReady", 0.5f);
         }
