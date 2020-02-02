@@ -17,6 +17,7 @@ public class CameraMove : MonoBehaviour
     [SerializeField] private BoxCollider[] buttons;
 
     private bool start;
+    private bool credit;
 
     private void Start()
     {
@@ -33,6 +34,11 @@ public class CameraMove : MonoBehaviour
             buttons[0].enabled = true;
             buttons[1].enabled = true;
 
+            StartCoroutine(FocusToMenu());
+        }
+        else if(Input.anyKey && credit)
+        {
+            credit = false;
             StartCoroutine(FocusToMenu());
         }
     }
@@ -72,6 +78,8 @@ public class CameraMove : MonoBehaviour
 
             yield return null;
         }
+
+        credit = true;
     }
 
     public void Game()
