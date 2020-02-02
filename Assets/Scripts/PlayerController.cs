@@ -145,8 +145,8 @@ public class PlayerController : MonoBehaviour
 
     public void StartRepairMode()
     {
-        speed = -speed;
-        acceleration = -acceleration;
+        speed = -7;
+        acceleration = -2;
         baseRotation = -baseRotation;
         Vector3 nextPos = transform.position;
         nextPos.x = nextPos.x < 0 ? initialX : -initialX;
