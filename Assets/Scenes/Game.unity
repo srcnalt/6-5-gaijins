@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44950318, g: 0.49957258, b: 0.5756842, a: 1}
+  m_IndirectSpecularColor: {r: 0.18248321, g: 0.22819534, b: 0.30724669, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 543fb1ffb6de94c54a02ab3282d6882d,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -1366,7 +1367,7 @@ PrefabInstance:
     - target: {fileID: 1519921562729677994, guid: e7c5a3aea911d2449a167beef473e477,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.10015
+      value: 2.9305496
       objectReference: {fileID: 0}
     - target: {fileID: 3038770291337144827, guid: e7c5a3aea911d2449a167beef473e477,
         type: 3}
@@ -4200,6 +4201,65 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 199881034}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1289658532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289658530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd46a85466c55ba45ad91404aaf16d8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enable: {fileID: 1470426953}
+--- !u!1 &1302806975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1302806977}
+  - component: {fileID: 1302806976}
+  m_Layer: 0
+  m_Name: AI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1302806976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302806975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14bcb4abad22f4134aeea0b9d96dd87d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1650152169}
+  laneOne: {fileID: 762387880}
+  laneTwo: {fileID: 1368614576}
+--- !u!4 &1302806977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302806975}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.2914367, y: -0.05625673, z: 14.83354}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1320434442
 GameObject:
   m_ObjectHideFlags: 0
@@ -5232,6 +5292,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1635805758}
   m_CullTransparentMesh: 0
+--- !u!1 &1650152169 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8865203002921223610, guid: 465178581c5fe804bba13a49c38331bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 8865203003787077321}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1668884287
 GameObject:
   m_ObjectHideFlags: 0
