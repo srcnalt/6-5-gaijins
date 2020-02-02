@@ -440,7 +440,7 @@ PrefabInstance:
     - target: {fileID: 6335181084827508607, guid: 174987bcbbfb30e459e562c18ff0f3c1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000015258789
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6335181084827508607, guid: 174987bcbbfb30e459e562c18ff0f3c1,
         type: 3}
@@ -5613,6 +5613,19 @@ MonoBehaviour:
   RestPositionOffset: {x: 0, y: 3, z: -8}
   RestRotationOffset: {x: 5, y: 0, z: 0}
   camera: {fileID: 1960751694}
+--- !u!114 &1960751697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960751692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b27650a4286542e088f33212d961e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: f0c0fd75016114f1fad3ee3b31c3ae96, type: 2}
 --- !u!1 &1988204852
 GameObject:
   m_ObjectHideFlags: 0
