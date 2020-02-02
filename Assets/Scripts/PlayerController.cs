@@ -100,7 +100,6 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        Debug.Log("Player" + playerType.ToString() + tag);
         if (tag != "Untagged")
         {
             if (tag == "Left")
@@ -192,7 +191,6 @@ public class PlayerController : MonoBehaviour
                 if(!breakable.isBroken)
                 {
                     AudioManager.GetComponent<AudioSource>().PlayOneShot(AudioManager.GetComponent<AudioLoader>().GetBreakingSound(),0.5f); // plays random breaking sound
-                    Debug.Log(playerType);
                     CameraShaker.Instance.camera = camera;
                     CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, .3f);
                     if (isReturning)
@@ -226,7 +224,6 @@ public class PlayerController : MonoBehaviour
             }
             else if (other.CompareTag("EndWall"))
             {
-                Debug.Log("Game Over");
                 mode = GameMode.GameOver;
                 //gameOver = true;
             }
