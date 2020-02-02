@@ -60,8 +60,8 @@
                 } 
                 color = color / 6; 
 
-                color = pow(color, 1/1.2);
-                color = color + pow(depth, 9) * float4(0.9,0.9,0.9,1);
+                color = pow(color, 1/1.4);
+                color = color + pow(depth, 12) * float4(0.9,0.9,0.9,1);
                    
                 return color;
             }
