@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44950396, g: 0.49957305, b: 0.57568526, a: 1}
+  m_IndirectSpecularColor: {r: 0.44950348, g: 0.4995728, b: 0.57568455, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4066,6 +4066,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enable: {fileID: 1470426953}
+--- !u!1 &1302806975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1302806977}
+  - component: {fileID: 1302806976}
+  m_Layer: 0
+  m_Name: AI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1302806976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302806975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14bcb4abad22f4134aeea0b9d96dd87d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1650152169}
+  laneOne: {fileID: 762387880}
+  laneTwo: {fileID: 1368614576}
+--- !u!4 &1302806977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302806975}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.2914367, y: -0.05625673, z: 14.83354}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1320434442
 GameObject:
   m_ObjectHideFlags: 0
@@ -5047,6 +5093,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1635805758}
   m_CullTransparentMesh: 0
+--- !u!1 &1650152169 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8865203002921223610, guid: 465178581c5fe804bba13a49c38331bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 8865203003787077321}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1668884287
 GameObject:
   m_ObjectHideFlags: 0
@@ -6184,6 +6236,7 @@ MonoBehaviour:
   - {fileID: 5422450211132747068, guid: 86a5393a2f76b5b4c91423bb23c000ab, type: 3}
   - {fileID: 1718228653547475956, guid: 4a2899e05e5b0d64996e154629b99e1d, type: 3}
   - {fileID: 4111325300039311135, guid: cc4232b452cc88947962c71a9ec63224, type: 3}
+  ai: {fileID: 1302806976}
 --- !u!114 &2084042127
 MonoBehaviour:
   m_ObjectHideFlags: 0
