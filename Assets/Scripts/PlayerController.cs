@@ -182,6 +182,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (breakable.isBroken && isReturning)
                 {
+                    AudioManager.GetComponent<AudioSource>().PlayOneShot(AudioManager.GetComponent<AudioLoader>().GetFixingSound(),0.5f); // plays random fixing sound
                     score.AddScore(1);
                 }
 
