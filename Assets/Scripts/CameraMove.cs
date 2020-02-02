@@ -1,62 +1,109 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CameraMove : MonoBehaviour
 {
-	[SerializeField] private Transform startTransf;
-	public Transform mainTransf;
-	[SerializeField] private Transform endTransf;
-	public Transform creditsTransf;
-	[SerializeField] private Canvas blackCanvas;
-	private CanvasGroup canvasGroup;
-	public int state; // 0 , 1, 2, and 3 correspond to different camera positions
+    [SerializeField] private Transform idleLocation;
+    [SerializeField] private Transform focusLocation;
+    [SerializeField] private Transform finalLocation;
+    [SerializeField] private Transform creditsLocation;
+    
+    [SerializeField] private Image blackScreen;
+    [SerializeField] private GameObject logo;
+    [SerializeField] private Camera camera;
 
-    void Start()
+    [SerializeField] private BoxCollider[] buttons;
+
+    private bool start;
+    private bool credit;
+
+    private void Start()
     {
-    	Camera.main.transform.position = startTransf.position;
-    	canvasGroup = blackCanvas.GetComponent<CanvasGroup>();
-    	canvasGroup.alpha = 0;
-    	state = 0;
+        camera.transform.position = idleLocation.position;
+        camera.transform.rotation = idleLocation.rotation;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(Input.GetKey(KeyCode.Space) && state == 0) {  // checks if space bar pressed while in intro scene
-        	StartCoroutine(MoveToFocus(mainTransf));
+        if (Input.GetKeyDown(KeyCode.Space) && !start)
+        {
+            start = true;
+
+            buttons[0].enabled = true;
+            buttons[1].enabled = true;
+
+            StartCoroutine(FocusToMenu());
+        }
+        else if(Input.anyKey && credit)
+        {
+            credit = false;
+            StartCoroutine(FocusToMenu());
         }
     }
-	public void StartFadeTo(int sceneNumber) {  // initializes fade to black on fridgeand loading of input scene
-		StartCoroutine(MoveToBlack(sceneNumber));
-	}
 
-	public void StartMoveTo(Transform targetTransf) {
-		StartCoroutine(MoveToFocus(targetTransf));
-	}
+    private IEnumerator FocusToMenu()
+    {
+        logo.SetActive(false);
+        float focus = 0;
 
-    private IEnumerator MoveToFocus(Transform targetTransf) {  // moves camera to focused transform's position
-    	float progress = 0;
-    	while(progress < 1) {
-    		progress += Time.deltaTime;
-    		Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, targetTransf.position, progress);
-    		yield return null;
-    	}
+        while (focus < 0.9f)
+        {
+            focus += Time.deltaTime / 3;
+
+            camera.transform.position = Vector3.Lerp(camera.transform.position, focusLocation.position, focus);
+            camera.transform.rotation = Quaternion.Lerp(camera.transform.rotation, focusLocation.rotation, focus);
+
+            yield return null;
+        }
     }
 
-    public IEnumerator MoveToBlack(int sceneNumber) {  //fades to black (in fridge), then loads scene of specified index
-    	float progress = 0;
-    	while(progress < 1) {
-    		progress += Time.deltaTime;
-    		Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, endTransf.position, Time.deltaTime);
-    		canvasGroup.alpha = progress;
-    		yield return null;
-    	}
-    	if(progress >= 1) {
-    		state = 2;
-			if(sceneNumber >= 0) {
-				Application.LoadLevel(sceneNumber);
-			}
-    	}
+    public void Credits()
+    {
+        StopAllCoroutines();
+        StartCoroutine(FocusToCredits());
+    }
+
+    private IEnumerator FocusToCredits()
+    {
+        float progress = 0;
+
+        while (progress < 0.9f)
+        {
+            progress += Time.deltaTime / 3;
+
+            camera.transform.position = Vector3.Lerp(camera.transform.position, creditsLocation.position, progress);
+            camera.transform.rotation = Quaternion.Lerp(camera.transform.rotation, creditsLocation.rotation, progress);
+
+            yield return null;
+        }
+
+        credit = true;
+    }
+
+    public void Game()
+    {
+        StopAllCoroutines();
+        StartCoroutine(FocusToGame());
+    }
+
+    private IEnumerator FocusToGame()
+    {
+        float progress = 0;
+
+        while (progress < 0.9f)
+        {
+            progress += Time.deltaTime / 3;
+
+            blackScreen.color = Color.Lerp(blackScreen.color, Color.black, progress);
+
+            camera.transform.position = Vector3.Lerp(camera.transform.position, finalLocation.position, progress);
+            camera.transform.rotation = Quaternion.Lerp(camera.transform.rotation, finalLocation.rotation, progress);
+
+            yield return null;
+        }
+
+        SceneManager.LoadScene(1);
     }
 }
