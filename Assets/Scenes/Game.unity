@@ -378,6 +378,7 @@ GameObject:
   m_Component:
   - component: {fileID: 139404926}
   - component: {fileID: 139404927}
+  - component: {fileID: 139404928}
   m_Layer: 5
   m_Name: InfoPlayer-2
   m_TagString: Untagged
@@ -420,6 +421,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 1988204854}
+  scoreVal: 0
+--- !u!114 &139404928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139404925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 516eba68d73d79c4ea3f8131d5b369c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trapsUsed: {fileID: 2065506366}
   scoreVal: 0
 --- !u!1001 &199881034
 PrefabInstance:
@@ -1133,7 +1148,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 5/5
 --- !u!222 &477678365
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3878,6 +3893,11 @@ PrefabInstance:
       propertyPath: AudioManager
       value: 
       objectReference: {fileID: 838397714}
+    - target: {fileID: 8865203002921223612, guid: 465178581c5fe804bba13a49c38331bb,
+        type: 3}
+      propertyPath: trapsUsed
+      value: 
+      objectReference: {fileID: 1212382112}
     - target: {fileID: 8865203002921223613, guid: 465178581c5fe804bba13a49c38331bb,
         type: 3}
       propertyPath: m_CollisionDetection
@@ -3997,6 +4017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1212382110}
   - component: {fileID: 1212382111}
+  - component: {fileID: 1212382112}
   m_Layer: 5
   m_Name: InfoPlayer-1
   m_TagString: Untagged
@@ -4039,6 +4060,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 1149941587}
+  scoreVal: 0
+--- !u!114 &1212382112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212382109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 516eba68d73d79c4ea3f8131d5b369c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trapsUsed: {fileID: 477678364}
   scoreVal: 0
 --- !u!1 &1252446511
 GameObject:
@@ -4109,7 +4144,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Traps:'
+  m_Text: 'Traps Left:'
 --- !u!222 &1252446514
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5519,7 +5554,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Traps:'
+  m_Text: 'Traps Left:'
 --- !u!222 &1732300229
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5957,17 +5992,17 @@ PrefabInstance:
     - target: {fileID: 604425959096214524, guid: e7c5a3aea911d2449a167beef473e477,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 7.35041e-40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 604425959096214524, guid: e7c5a3aea911d2449a167beef473e477,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: -1.7016195e+38
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 604425959096214524, guid: e7c5a3aea911d2449a167beef473e477,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 7.34684e-40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3038770291337144827, guid: e7c5a3aea911d2449a167beef473e477,
         type: 3}
@@ -6457,7 +6492,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 5/5
 --- !u!222 &2065506367
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6803,6 +6838,11 @@ PrefabInstance:
       propertyPath: AudioManager
       value: 
       objectReference: {fileID: 838397714}
+    - target: {fileID: 8865203002921223612, guid: 465178581c5fe804bba13a49c38331bb,
+        type: 3}
+      propertyPath: trapsUsed
+      value: 
+      objectReference: {fileID: 139404928}
     - target: {fileID: 8865203002921223613, guid: 465178581c5fe804bba13a49c38331bb,
         type: 3}
       propertyPath: m_CollisionDetection
