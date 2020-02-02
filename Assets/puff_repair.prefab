@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9076549471288619027}
   - component: {fileID: 9076549471288619026}
   m_Layer: 0
-  m_Name: puff_repair2
+  m_Name: puff_repair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 9076549471288619025}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.93723774, y: 1.06, z: 0.22}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 9076549472638145747}
   m_Father: {fileID: 0}
@@ -116,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -169,7 +169,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6066226, g: 1, b: 0, a: 1}
+      maxColor: {r: 0.3915094, g: 0.69834197, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1042,15 +1042,24 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0.009803922
           value: 0.24324465
-          inSlope: 1.8378274
-          outSlope: 1.8378274
+          inSlope: 0.12559566
+          outSlope: 0.12559566
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.22500023
+          outWeight: 0.6373127
+        - serializedVersion: 3
+          time: 0.44939798
+          value: 0.28888634
+          inSlope: 0.3158283
+          outSlope: 0.3158283
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 0.50000215
+          value: 0.3431418
           inSlope: -0.40017393
           outSlope: -0.40017393
           tangentMode: 0
@@ -1362,7 +1371,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 0, a: 1}
+        key0: {r: 0, g: 0.46812057, b: 1, a: 1}
         key1: {r: 1, g: 1, b: 1, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -4764,6 +4773,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5852,16 +5862,16 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0.014705808
-          value: 0.013515949
-          inSlope: 1.8378274
-          outSlope: 1.8378274
+          value: 0.013515943
+          inSlope: 0.44659376
+          outSlope: 0.44659376
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.22500023
+          outWeight: 0.23905484
         - serializedVersion: 3
           time: 0.99508667
-          value: 0.48648858
+          value: 0.35921592
           inSlope: -0.40017393
           outSlope: -0.40017393
           tangentMode: 0
@@ -6173,8 +6183,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.80344284, g: 1, b: 0.18396229, a: 1}
-        key1: {r: 0.6799644, g: 1, b: 0, a: 0}
+        key0: {r: 0.18431371, g: 0.19520897, b: 1, a: 1}
+        key1: {r: 0, g: 0.7420225, b: 1, a: 0}
         key2: {r: 1, g: 1, b: 1, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -9575,6 +9585,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
