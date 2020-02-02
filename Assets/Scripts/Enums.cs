@@ -14,14 +14,24 @@ public enum PlayerType
 public enum MoveKey
 {
     Left,
-    Right
+    Right,
+    Trap,
+    Jump
 }
 
 public enum GameMode
 {
+    Instructions,
     Break,
     CutScene,
     Repair,
     GameOver,
-    None
+    None,
+    Stop
+}
+
+public enum PlayerState
+{
+    Run,
+    Jump
 }

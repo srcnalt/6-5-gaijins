@@ -1,28 +1,42 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using EZCameraShake;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject AudioManager;
     [SerializeField] private PlayerType playerType;
     [SerializeField] private Score score;
+    [SerializeField] private Transform ram;
+    [SerializeField] private Camera camera;
+
+    [SerializeField] private GameObject[] traps;
 
     private Hashtable controlKeys = new Hashtable();
 
     private bool isReturning;
-    public static GameMode mode = GameMode.Break;
+    public static GameMode mode = GameMode.Instructions;
 
     private float speed = 5;
-    private float acceleration = 0.2f;
+    private float acceleration = 0.16f;
     private float xSpeed = 0;
     private float initialX = 2.5f;
+    private float baseRotation = 20;
 
     private float leftWall = -1;
     private float rightWall = 1;
+
+    private PlayerState state = PlayerState.Run;
+    private float jumpCtr = 0;
+
+    private Animator animator;
 
     private void Start()
     {
         controlKeys = MapControls(playerType);
         Prepare();
+        animator = ram.GetComponent<Animator>();
     }
 
     private void Prepare()
@@ -36,62 +50,109 @@ public class PlayerController : MonoBehaviour
     {
         switch (mode)
         {
+            case GameMode.Instructions:
+                break;
             case GameMode.Break:
+                animator.SetBool("Run", true);
+                animator.SetBool("Jump", false);
                 MovePlayer();
+                DropTrap();
                 break;
             case GameMode.CutScene:
+                animator.SetBool("Run", false);
+                animator.SetBool("Jump", false);
                 break;
             case GameMode.Repair:
+                animator.SetBool("Run", true);
+                animator.SetBool("Jump", false);
                 MovePlayer();
                 break;
             case GameMode.GameOver:
+                animator.SetBool("Run", false);
+                animator.SetBool("Jump", false);
                 break;
         }
     }
 
+    private int count;
+    private bool trapCooldown;
+    private void DropTrap()
+    {
+        if (GetKey(MoveKey.Trap) && !trapCooldown && count < 5)
+        {
+            count++;
+            trapCooldown = true;
+            GameObject instance = Instantiate(traps[UnityEngine.Random.Range(0, traps.Length)]);
+            instance.transform.position = transform.position;
+
+            Invoke("TrapReady", 0.5f);
+        }
+    }
+
+    private void TrapReady()
+    {
+        trapCooldown = false;
+    }
+
     private void MovePlayer()
     {
-        if (GetKey(MoveKey.Left))
+        float yJump = 0;
+        if (GetKeyDown(MoveKey.Jump) || state == PlayerState.Jump)
+        {
+            animator.SetBool("Jump", true);
+            animator.SetBool("Run", false);
+            state = PlayerState.Jump;
+            jumpCtr += Time.deltaTime * 5;
+            yJump = Mathf.Sin(jumpCtr) * 0.6f;
+            if (yJump < 0)
+            {
+                yJump = 0;
+                jumpCtr = 0;
+                state = PlayerState.Run;
+                animator.SetBool("Run", true);
+                animator.SetBool("Jump", false);
+            }
+        }
+        else if(GetKey(MoveKey.Left))
+        {
             xSpeed -= acceleration;
+        }
         else if (GetKey(MoveKey.Right))
+        {
             xSpeed += acceleration;
-        else
+        }
+        else 
+        {
             xSpeed -= xSpeed / 10;
+        }
        
         xSpeed = Mathf.Clamp(xSpeed, -2, 2);
         float moveX = Time.deltaTime * xSpeed;
         float nextX = transform.localPosition.x + moveX;
         if ((nextX < leftWall) || (nextX > rightWall))
         {
-            xSpeed = -xSpeed / 3;
+            xSpeed = -xSpeed / 2;
             xSpeed = Mathf.Abs(xSpeed) < 0.2 ? 0 : xSpeed;
             moveX = Time.deltaTime * xSpeed;
         }
 
+        ram.rotation = Quaternion.Lerp(ram.rotation, Quaternion.Euler(0, xSpeed * baseRotation, 0) * transform.rotation, Time.deltaTime * 20);
         transform.position += new Vector3(0, 0, Time.deltaTime * speed);
-        transform.localPosition += new Vector3(moveX, 0, 0);
+        Vector3 localPos = transform.localPosition + new Vector3(moveX, 0, 0);
+        localPos.y = yJump;
+        transform.localPosition = localPos;
     }
 
     public void StartRepairMode()
     {
-        speed = -speed;
-        acceleration = -acceleration;
+        speed = -7;
+        acceleration = -2;
+        baseRotation = -baseRotation;
         Vector3 nextPos = transform.position;
         nextPos.x = nextPos.x < 0 ? initialX : -initialX;
         transform.position = nextPos;
         transform.Rotate(new Vector3(0, 180, 0));
         Prepare();
-    }
-
-    private void GameOver()
-    { 
-        mode = GameMode.GameOver;
-        CalculateScore();
-    }
-
-    private int CalculateScore()
-    {
-        return 0;
     }
 
     bool sentinel = false;
@@ -106,18 +167,22 @@ public class PlayerController : MonoBehaviour
 
                 if(!breakable.isBroken)
                 {
+                    AudioManager.GetComponent<AudioSource>().PlayOneShot(AudioManager.GetComponent<AudioLoader>().GetBreakingSound(),0.5f); // plays random breaking sound
+                    Debug.Log(playerType);
+                    CameraShaker.Instance.camera = camera;
+                    CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, .3f);
                     if (isReturning)
                     {
-                        score.Destroyed(-1);
+                        score.AddScore(-1);
                     }
                     else
                     {
-                        score.Destroyed(1);
+                        score.AddScore(1);
                     }
                 }
                 else if (breakable.isBroken && isReturning)
                 {
-                    score.Repaired(1);
+                    score.AddScore(1);
                 }
 
                 breakable.SwitchState();
@@ -137,7 +202,12 @@ public class PlayerController : MonoBehaviour
             else if (other.CompareTag("EndWall"))
             {
                 Debug.Log("Game Over");
+                mode = GameMode.GameOver;
                 //gameOver = true;
+            }
+            else if (other.CompareTag("Trap"))
+            {
+                score.AddScore(-1);
             }
         }
     }
@@ -155,13 +225,17 @@ public class PlayerController : MonoBehaviour
         Hashtable controlKeys = new Hashtable();
         if (type == PlayerType.PlayerOne)
         {
-            controlKeys[MoveKey.Left] = KeyCode.A;
+            controlKeys[MoveKey.Left]  = KeyCode.A;
             controlKeys[MoveKey.Right] = KeyCode.D;
+            controlKeys[MoveKey.Trap]  = KeyCode.S;
+            controlKeys[MoveKey.Jump] = KeyCode.W;
         }
         else
         {
-            controlKeys[MoveKey.Left] = KeyCode.J;
+            controlKeys[MoveKey.Left]  = KeyCode.J;
             controlKeys[MoveKey.Right] = KeyCode.L;
+            controlKeys[MoveKey.Trap]  = KeyCode.K;
+            controlKeys[MoveKey.Jump] = KeyCode.I;
         }
         return controlKeys;
     }
@@ -169,6 +243,11 @@ public class PlayerController : MonoBehaviour
     private bool GetKey(MoveKey key)
     {
         return Input.GetKey((KeyCode)controlKeys[key]);
+    }
+
+    private bool GetKeyDown(MoveKey key)
+    {
+        return Input.GetKeyDown((KeyCode)controlKeys[key]);
     }
 
 }
