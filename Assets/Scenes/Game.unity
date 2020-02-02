@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44950348, g: 0.4995728, b: 0.57568455, a: 1}
+  m_IndirectSpecularColor: {r: 0.18248321, g: 0.22819534, b: 0.30724669, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 543fb1ffb6de94c54a02ab3282d6882d,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -1295,7 +1296,7 @@ PrefabInstance:
     - target: {fileID: 1519921562729677994, guid: e7c5a3aea911d2449a167beef473e477,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.10015
+      value: 2.9305496
       objectReference: {fileID: 0}
     - target: {fileID: 3038770291337144827, guid: e7c5a3aea911d2449a167beef473e477,
         type: 3}
@@ -5759,6 +5760,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1519921562729677994, guid: e7c5a3aea911d2449a167beef473e477,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.2237499
+      objectReference: {fileID: 0}
     - target: {fileID: 3038770291337144827, guid: e7c5a3aea911d2449a167beef473e477,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6236,7 +6242,6 @@ MonoBehaviour:
   - {fileID: 5422450211132747068, guid: 86a5393a2f76b5b4c91423bb23c000ab, type: 3}
   - {fileID: 1718228653547475956, guid: 4a2899e05e5b0d64996e154629b99e1d, type: 3}
   - {fileID: 4111325300039311135, guid: cc4232b452cc88947962c71a9ec63224, type: 3}
-  ai: {fileID: 1302806976}
 --- !u!114 &2084042127
 MonoBehaviour:
   m_ObjectHideFlags: 0
