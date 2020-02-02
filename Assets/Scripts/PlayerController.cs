@@ -19,13 +19,16 @@ public class PlayerController : MonoBehaviour
     public static GameMode mode = GameMode.Instructions;
 
     private float speed = 5;
-    private float acceleration = 0.12f;
+    private float acceleration = 0.16f;
     private float xSpeed = 0;
     private float initialX = 2.5f;
     private float baseRotation = 20;
 
     private float leftWall = -1;
     private float rightWall = 1;
+
+    private PlayerState state = PlayerState.Run;
+    private float jumpCtr = 0;
 
     private Animator animator;
 
@@ -51,18 +54,22 @@ public class PlayerController : MonoBehaviour
                 break;
             case GameMode.Break:
                 animator.SetBool("Run", true);
+                animator.SetBool("Jump", false);
                 MovePlayer();
                 DropTrap();
                 break;
             case GameMode.CutScene:
                 animator.SetBool("Run", false);
+                animator.SetBool("Jump", false);
                 break;
             case GameMode.Repair:
                 animator.SetBool("Run", true);
+                animator.SetBool("Jump", false);
                 MovePlayer();
                 break;
             case GameMode.GameOver:
                 animator.SetBool("Run", false);
+                animator.SetBool("Jump", false);
                 break;
         }
     }
@@ -89,9 +96,24 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-
-
-        if (GetKey(MoveKey.Left))
+        float yJump = 0;
+        if (GetKeyDown(MoveKey.Jump) || state == PlayerState.Jump)
+        {
+            animator.SetBool("Jump", true);
+            animator.SetBool("Run", false);
+            state = PlayerState.Jump;
+            jumpCtr += Time.deltaTime * 5;
+            yJump = Mathf.Sin(jumpCtr) * 0.6f;
+            if (yJump < 0)
+            {
+                yJump = 0;
+                jumpCtr = 0;
+                state = PlayerState.Run;
+                animator.SetBool("Run", true);
+                animator.SetBool("Jump", false);
+            }
+        }
+        else if(GetKey(MoveKey.Left))
         {
             xSpeed -= acceleration;
         }
@@ -99,7 +121,7 @@ public class PlayerController : MonoBehaviour
         {
             xSpeed += acceleration;
         }
-        else
+        else 
         {
             xSpeed -= xSpeed / 10;
         }
@@ -116,7 +138,9 @@ public class PlayerController : MonoBehaviour
 
         ram.rotation = Quaternion.Lerp(ram.rotation, Quaternion.Euler(0, xSpeed * baseRotation, 0) * transform.rotation, Time.deltaTime * 20);
         transform.position += new Vector3(0, 0, Time.deltaTime * speed);
-        transform.localPosition += new Vector3(moveX, 0, 0);
+        Vector3 localPos = transform.localPosition + new Vector3(moveX, 0, 0);
+        localPos.y = yJump;
+        transform.localPosition = localPos;
     }
 
     public void StartRepairMode()
@@ -146,7 +170,7 @@ public class PlayerController : MonoBehaviour
                     AudioManager.GetComponent<AudioSource>().PlayOneShot(AudioManager.GetComponent<AudioLoader>().GetBreakingSound(),0.5f); // plays random breaking sound
                     Debug.Log(playerType);
                     CameraShaker.Instance.camera = camera;
-                    CameraShaker.Instance.ShakeOnce(3f, 3f, 0.1f, .3f);
+                    CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, .3f);
                     if (isReturning)
                     {
                         score.AddScore(-1);
@@ -204,12 +228,14 @@ public class PlayerController : MonoBehaviour
             controlKeys[MoveKey.Left]  = KeyCode.A;
             controlKeys[MoveKey.Right] = KeyCode.D;
             controlKeys[MoveKey.Trap]  = KeyCode.S;
+            controlKeys[MoveKey.Jump] = KeyCode.W;
         }
         else
         {
             controlKeys[MoveKey.Left]  = KeyCode.J;
             controlKeys[MoveKey.Right] = KeyCode.L;
             controlKeys[MoveKey.Trap]  = KeyCode.K;
+            controlKeys[MoveKey.Jump] = KeyCode.I;
         }
         return controlKeys;
     }
@@ -218,5 +244,10 @@ public class PlayerController : MonoBehaviour
     {
         return Input.GetKey((KeyCode)controlKeys[key]);
     }
-    
+
+    private bool GetKeyDown(MoveKey key)
+    {
+        return Input.GetKeyDown((KeyCode)controlKeys[key]);
+    }
+
 }
