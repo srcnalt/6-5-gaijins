@@ -387,7 +387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6335181084827508607
 RectTransform:
   m_ObjectHideFlags: 0
@@ -400,12 +400,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7321919805026696211}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 30}
+  m_SizeDelta: {x: 0, y: 62}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &6090118109547249632
 CanvasRenderer:
@@ -446,7 +446,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press <b>Space</b> to skip...
+  m_Text: 'The Gotte brothers are in a big argument. THIS MEANS WAR!!!"
+
+    (Destroy
+    more of the other player''s room to win)
+
+    Press <b>Space</b> to continue...'
 --- !u!1 &7321919805026696210
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,6 +464,8 @@ GameObject:
   - component: {fileID: 7321919805026696213}
   - component: {fileID: 7321919805026696212}
   - component: {fileID: 2705871836004343008}
+  - component: {fileID: 1289658532}
+  - component: {fileID: 825377472628756324}
   m_Layer: 5
   m_Name: 1
   m_TagString: Untagged
@@ -483,6 +490,7 @@ RectTransform:
   - {fileID: 3906870791056700080}
   - {fileID: 7526406167238846909}
   - {fileID: 5111482407971754887}
+  - {fileID: 6335181084827508607}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -546,6 +554,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1289658532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7321919805026696210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd46a85466c55ba45ad91404aaf16d8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enable: {fileID: 0}
+--- !u!114 &825377472628756324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7321919805026696210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd46a85466c55ba45ad91404aaf16d8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enable: {fileID: 0}
 --- !u!1 &8231661175406640567
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,7 +614,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -179.1}
+  m_AnchoredPosition: {x: 0, y: -193.96}
   m_SizeDelta: {x: 697, y: 33.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7170299555877588406
