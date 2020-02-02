@@ -15,7 +15,8 @@ public enum MoveKey
 {
     Left,
     Right,
-    Trap
+    Trap,
+    Jump
 }
 
 public enum GameMode
@@ -27,4 +28,10 @@ public enum GameMode
     GameOver,
     None,
     Stop
+}
+
+public enum PlayerState
+{
+    Run,
+    Jump
 }
