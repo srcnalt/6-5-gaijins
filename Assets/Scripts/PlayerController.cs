@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     private PlayerState state = PlayerState.Run;
     private float jumpCtr = 0;
+    private bool ai = false;
 
     private Animator animator;
 
@@ -100,7 +101,11 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        if (tag != "Untagged")
+        if (Input.GetKey(KeyCode.Z))
+        {
+            ai = !ai;
+        }
+        if (tag != "Untagged" && ai)
         {
             if (tag == "Left")
             {
