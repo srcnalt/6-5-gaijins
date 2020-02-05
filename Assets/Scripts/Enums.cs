@@ -33,5 +33,7 @@ public enum GameMode
 public enum PlayerState
 {
     Run,
-    Jump
+    Jump,
+    TurnLeft,
+    TurnRight
 }

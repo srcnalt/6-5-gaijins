@@ -13,7 +13,7 @@ public class BreakableObject : MonoBehaviour
         BoxCollider collider = main.GetComponent<BoxCollider>();
 
         orientation = (Orientation)Random.Range(0, 3);
-
+        tag = "Breakable";
         switch (orientation)
         {
             case Orientation.Left:
@@ -36,5 +36,7 @@ public class BreakableObject : MonoBehaviour
         broken.SetActive(!isBroken);
         main.SetActive(isBroken);
         isBroken = !isBroken;
+
+        tag = isBroken ? "Fixable" : "Breakable";
     }
 }

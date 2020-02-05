@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public static GameMode mode = GameMode.Instructions;
 
     private float speed = 5;
-    private float acceleration = 0.16f;
+    private float acceleration = 0.2f;
     private float xSpeed = 0;
     private float initialX = 2.5f;
     private float baseRotation = 20;
@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     private PlayerState state = PlayerState.Run;
     private float jumpCtr = 0;
+    private bool ai = false;
 
     private Animator animator;
 
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+
         switch (mode)
         {
             case GameMode.Instructions:
@@ -99,6 +101,26 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
+        if (Input.GetKey(KeyCode.Z))
+        {
+            ai = !ai;
+        }
+        if (tag != "Untagged" && ai)
+        {
+            if (tag == "Left")
+            {
+                state = PlayerState.TurnLeft;
+            }
+            else if (tag == "Right")
+            {
+                state = PlayerState.TurnRight;
+            }
+            else if (tag == "Jump")
+            {
+                state = PlayerState.Jump;
+            }
+            tag = "Untagged";
+        }
         float yJump = 0;
         if (GetKeyDown(MoveKey.Jump) || state == PlayerState.Jump)
         {
@@ -116,13 +138,15 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("Jump", false);
             }
         }
-        else if(GetKey(MoveKey.Left))
+        else if(GetKey(MoveKey.Left) || state == PlayerState.TurnLeft)
         {
             xSpeed -= acceleration;
+            state = PlayerState.Run;
         }
-        else if (GetKey(MoveKey.Right))
+        else if (GetKey(MoveKey.Right) || state == PlayerState.TurnRight)
         {
             xSpeed += acceleration;
+            state = PlayerState.Run;
         }
         else 
         {
@@ -149,12 +173,13 @@ public class PlayerController : MonoBehaviour
     public void StartRepairMode()
     {
         speed = -7;
-        acceleration = -2;
+        acceleration = -2.2f;
         baseRotation = -baseRotation;
         Vector3 nextPos = transform.position;
         nextPos.x = nextPos.x < 0 ? initialX : -initialX;
         transform.position = nextPos;
         transform.Rotate(new Vector3(0, 180, 0));
+        tag = "Repair";
         Prepare();
     }
 
@@ -171,7 +196,6 @@ public class PlayerController : MonoBehaviour
                 if(!breakable.isBroken)
                 {
                     AudioManager.GetComponent<AudioSource>().PlayOneShot(AudioManager.GetComponent<AudioLoader>().GetBreakingSound(),0.5f); // plays random breaking sound
-                    Debug.Log(playerType);
                     CameraShaker.Instance.camera = camera;
                     CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, .3f);
                     if (isReturning)
@@ -205,7 +229,6 @@ public class PlayerController : MonoBehaviour
             }
             else if (other.CompareTag("EndWall"))
             {
-                Debug.Log("Game Over");
                 mode = GameMode.GameOver;
                 //gameOver = true;
             }

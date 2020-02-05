@@ -8,6 +8,10 @@ TagManager:
   - CutSceneRoom
   - EndWall
   - Trap
+  - Repair
+  - Fixable
+  - Left
+  - Right
   layers:
   - Default
   - TransparentFX
