@@ -437,6 +437,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapsUsed: {fileID: 2065506366}
   scoreVal: 0
+--- !u!1 &175055670 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8184599614736621947, guid: e7c5a3aea911d2449a167beef473e477,
+    type: 3}
+  m_PrefabInstance: {fileID: 265774333}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &175055671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175055670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f9c1d1a614db439485875852fd8ebb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &199881034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -602,7 +620,7 @@ PrefabInstance:
     - target: {fileID: 604425959096214524, guid: e7c5a3aea911d2449a167beef473e477,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 2.8
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1266344947769642948, guid: e7c5a3aea911d2449a167beef473e477,
         type: 3}
@@ -1216,6 +1234,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477678362}
   m_CullTransparentMesh: 0
+--- !u!1 &520349789 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8184599614736621947, guid: e7c5a3aea911d2449a167beef473e477,
+    type: 3}
+  m_PrefabInstance: {fileID: 1952255768}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &520349790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520349789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f9c1d1a614db439485875852fd8ebb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &545494622
 GameObject:
   m_ObjectHideFlags: 0
@@ -2004,8 +2040,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.25
-  m_Range: 20
+  m_Intensity: 0.6
+  m_Range: 32
   m_SpotAngle: 150
   m_InnerSpotAngle: 15
   m_CookieSize: 10
@@ -2046,7 +2082,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -2744,7 +2780,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073636639}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
@@ -3476,8 +3512,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.25
-  m_Range: 20
+  m_Intensity: 0.6
+  m_Range: 32
   m_SpotAngle: 150
   m_InnerSpotAngle: 15
   m_CookieSize: 10
@@ -3518,7 +3554,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -5213,7 +5249,7 @@ PrefabInstance:
     - target: {fileID: 604425959096214524, guid: e7c5a3aea911d2449a167beef473e477,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 1.4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3038770291337144827, guid: e7c5a3aea911d2449a167beef473e477,
         type: 3}
