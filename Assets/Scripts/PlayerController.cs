@@ -50,10 +50,15 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            ai = !ai;
+        }
         switch (mode)
         {
             case GameMode.Instructions:
+                animator.SetBool("Run", false);
+                animator.SetBool("Jump", false);
                 break;
             case GameMode.Break:
                 animator.SetBool("Run", true);
@@ -101,10 +106,6 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        if (Input.GetKey(KeyCode.Z))
-        {
-            ai = !ai;
-        }
         if (tag != "Untagged" && ai)
         {
             if (tag == "Left")
@@ -173,7 +174,7 @@ public class PlayerController : MonoBehaviour
     public void StartRepairMode()
     {
         speed = -7;
-        acceleration = -2.2f;
+        acceleration = -0.25f;
         baseRotation = -baseRotation;
         Vector3 nextPos = transform.position;
         nextPos.x = nextPos.x < 0 ? initialX : -initialX;

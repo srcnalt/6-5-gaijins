@@ -22,7 +22,6 @@ public class AIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("UpdateAI");
         if (mode == GameMode.Break)
         {
             BreakAI();

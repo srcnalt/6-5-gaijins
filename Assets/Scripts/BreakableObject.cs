@@ -27,6 +27,7 @@ public class BreakableObject : MonoBehaviour
             case Orientation.Center:
                 int offsetDirection = Random.Range(-1, 2);
                 transform.position += new Vector3(0.1f * offsetDirection, 0, 0);
+                transform.Rotate(new Vector3(0, 180, 0));
                 break;
         }
     }
